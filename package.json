@@ -1,0 +1,22 @@
+{
+  "name": "jquery-custom-select",
+  "version": "1.0.0",
+  "description": "Custom Select jQuery Plugin",
+  "main": "jquery.custom-select.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kvlsrg/jquery-custom-select.git"
+  },
+  "keywords": [
+    "custom-select"
+  ],
+  "author": "Sergey Kovalenko",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/kvlsrg/jquery-custom-select/issues"
+  },
+  "homepage": "https://github.com/kvlsrg/jquery-custom-select#readme"
+}
