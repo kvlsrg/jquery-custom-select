@@ -1,0 +1,219 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Custom Select jQuery Plugin</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans">
+  <link rel="stylesheet" href="jquery.custom-select.min.css">
+  <script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="jquery.custom-select.min.js"></script>
+  <style>
+    html {
+      height: 100%;
+    }
+
+    body {
+      height: 100%;
+      margin: 0;
+      background-color: #1d1f20;
+      font-family: "Open Sans", sans-serif;
+      color: #ccc;
+    }
+
+    .wrapper {
+      box-sizing: border-box;
+      min-height: 100%;
+      padding: 0 1rem 9rem;
+    }
+
+    .container {
+      max-width: 980px;
+      margin: 0 auto;
+    }
+
+    h1 {
+      margin: 1rem 0 2rem;
+      text-align: center;
+    }
+
+    @media (min-width: 480px) {
+      h1 {
+        text-align: left;
+      }
+    }
+
+    p {
+      margin: 0 0 1rem;
+    }
+
+    .custom-select {
+      position: relative;
+      z-index: 3;
+      box-sizing: border-box;
+      display: block;
+      margin-bottom: 2rem;
+      background-color: #f4f4f4;
+      text-align: left;
+    }
+
+    @media (min-width: 480px) {
+      .custom-select {
+        display: inline-block;
+        width: 10rem;
+      }
+    }
+
+    .custom-select--additional {
+      z-index: 2;
+    }
+
+    .custom-select--dark {
+      z-index: 1;
+      background-color: #000;
+    }
+
+    .custom-select__option {
+      position: relative;
+      z-index: 2;
+      height: 2rem;
+      padding: 0 0.5rem;
+      color: #333;
+      font-size: 1rem;
+      line-height: 2rem;
+    }
+
+    .custom-select__option:focus {
+      outline: none;
+    }
+
+    .custom-select__option:hover,
+    .custom-select__option:focus {
+      background-color: #dbdbdb;
+    }
+
+    .custom-select__option.bold {
+      font-weight: bold;
+    }
+
+    .custom-select__option--value {
+      padding-right: 1.75rem;
+    }
+
+    .custom-select__option--value::after {
+      position: absolute;
+      z-index: 1;
+      display: block;
+      width: 0.75rem;
+      height: 0.75rem;
+      top: 50%;
+      right: 0.5rem;
+      margin-top: -0.375rem;
+      background: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23333' d='M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z'/%3E%3C/svg%3E") no-repeat;
+      content: "";
+    }
+
+    .custom-select--active .custom-select__option--value::after {
+      transform: rotate(-180deg);
+    }
+
+    .custom-select--dark .custom-select__option--value::after {
+      background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%23fff' d='M0 7.33l2.829-2.83 9.175 9.339 9.167-9.339 2.829 2.83-11.996 12.17z'/%3E%3C/svg%3E");
+    }
+
+    .custom-select--dark .custom-select__option {
+      color: #fff;
+    }
+
+    .custom-select--dark .custom-select__option:hover,
+    .custom-select--dark .custom-select__option:focus {
+      background-color: #333333;
+    }
+
+    .custom-select__dropdown {
+      background-color: #f4f4f4;
+    }
+
+    .custom-select--dark .custom-select__dropdown {
+      background-color: #000;
+    }
+
+    .custom-select__input {
+      height: 2rem;
+      padding: 0 0.5rem;
+      color: #333;
+      font-size: 1rem;
+      border: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="container">
+      <h1>jQuery Custom Select Plugin</h1>
+      <p>Default options</p>
+      <select class="select select--default">
+        <option value="All">All</option>
+        <option class="bold" value="Second Item">Second Item</option>
+        <option value="Third Item">Third Item</option>
+        <option class="bold" value="Fourth Item">Fourth Item</option>
+        <option value="Fifth Very Very Long Item">Fifth Very Very Long Item</option>
+      </select>
+      <p>Additional options</p>
+      <select class="select select--additional">
+        <option value="0">All</option>
+        <option value="2">Second Item</option>
+        <option value="3">Third Item</option>
+        <option value="4">Fourth Item</option>
+        <option value="5">Fifth Very Very Long Item</option>
+      </select>
+      <p>Group with same options</p>
+      <select class="select select--group">
+        <option>All</option>
+        <option>Second Item</option>
+        <option>Third Item</option>
+        <option>Fourth Item</option>
+        <option>Fifth Very Very Long Item</option>
+      </select>
+      <select class="select select--group">
+        <option value="0">All</option>
+        <option value="2">Second Item</option>
+        <option value="3">Third Item</option>
+        <option value="4">Fourth Item</option>
+        <option value="5" selected="selected">Fifth Very Very Long Item</option>
+      </select>
+    </div>
+  </div>
+  <script>
+    (function ($) {
+      $('.select').on('change', function () {
+        console.log($(this).val());
+      });
+
+      $('.select--default').customSelect();
+
+      $('.select--additional').customSelect({
+        autocomplete: true,
+        includeValue: true,
+        keyboard: true,
+        modifier: 'custom-select--additional',
+        placeholder: 'Search...',
+        showCallback: function () {
+          $('body').css('background', 'black');
+        },
+        hideCallback: function () {
+          $('body').css('background', '');
+        }
+      });
+
+      // Several instances with one init
+      $('.select--group').customSelect({
+        autocomplete: true,
+        modifier: 'custom-select--dark',
+        placeholder: 'Autocomplete...'
+      });
+    })(jQuery);
+  </script>
+</body>
+</html>
