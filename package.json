@@ -1,6 +1,6 @@
 {
   "name": "jquery-custom-select",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Custom Select jQuery Plugin",
   "main": "jquery.custom-select.js",
   "scripts": {
@@ -11,6 +11,7 @@
     "url": "git+https://github.com/kvlsrg/jquery-custom-select.git"
   },
   "keywords": [
+  	"jquery-plugin",
     "custom-select"
   ],
   "author": "Sergey Kovalenko",
