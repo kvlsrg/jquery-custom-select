@@ -17,9 +17,8 @@
     body {
       height: 100%;
       margin: 0;
-      background-color: #1d1f20;
       font-family: "Open Sans", sans-serif;
-      color: #ccc;
+      color: #333;
     }
 
     .wrapper {
@@ -50,7 +49,6 @@
 
     .custom-select {
       position: relative;
-      z-index: 3;
       box-sizing: border-box;
       display: block;
       margin-bottom: 2rem;
@@ -65,18 +63,16 @@
       }
     }
 
-    .custom-select--additional {
+    .custom-select--active {
       z-index: 2;
     }
 
     .custom-select--dark {
-      z-index: 1;
       background-color: #000;
     }
 
     .custom-select__option {
       position: relative;
-      z-index: 2;
       height: 2rem;
       padding: 0 0.5rem;
       color: #333;
@@ -142,16 +138,17 @@
     .custom-select__input {
       height: 2rem;
       padding: 0 0.5rem;
+      border: 0;
+      outline: none;
       color: #333;
       font-size: 1rem;
-      border: 0;
     }
   </style>
 </head>
 <body>
   <div class="wrapper">
     <div class="container">
-      <h1>jQuery Custom Select Plugin</h1>
+      <h1>Custom Select jQuery Plugin</h1>
       <p>Default options</p>
       <select class="select select--default">
         <option value="All">All</option>
@@ -197,10 +194,9 @@
         autocomplete: true,
         includeValue: true,
         keyboard: true,
-        modifier: 'custom-select--additional',
         placeholder: 'Search...',
         showCallback: function () {
-          $('body').css('background', 'black');
+          $('body').css('background', 'grey');
         },
         hideCallback: function () {
           $('body').css('background', '');
