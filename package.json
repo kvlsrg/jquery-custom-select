@@ -1,6 +1,6 @@
 {
   "name": "jquery-custom-select",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Custom Select jQuery Plugin",
   "main": "jquery.custom-select.js",
   "scripts": {
@@ -18,6 +18,5 @@
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/kvlsrg/jquery-custom-select/issues"
-  },
-  "homepage": "https://github.com/kvlsrg/jquery-custom-select#readme"
+  }
 }
