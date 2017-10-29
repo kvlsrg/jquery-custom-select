@@ -22,14 +22,13 @@ keyboard | boolean | true | Enables keyboard control
 modifier | string | false | Additional class, e.g. BEM modifier
 placeholder | string | false | Autocomplete input placeholder
 showCallback | Function | false | Fires after dropdown opens
-transition | number \|\| string | 100 | jQuery slideUp/Down speed
+transition | number &#124;&#124; string | 100 | jQuery slideUp/Down speed
 
 ### Style
 
-Note, plugin does not contain any additional CSS except of base, which includes only dropdown positioning, reset of options & input.
-Selectors naming of custom select baseed on BEM. 
+Note, plugin does not contain any additional CSS except of base, which includes only dropdown positioning, reset of options & input. 
 
-HTML structure of block (open dropdown state):
+Selectors naming of custom select based on BEM. Here is HTML structure of block (open dropdown state):
 
 ```html
 <div class="custom-select custom-select--active">

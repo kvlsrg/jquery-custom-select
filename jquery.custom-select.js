@@ -12,10 +12,10 @@
    * @param {string} [options.block=custom-select] - Class name (BEM block name)
    * @param {Function} [options.hideCallback=false] - Fires after dropdown closes
    * @param {boolean} [options.includeValue=false] - Shows chosen value option in
-   * dropdown, if enabled also cancels dropdown options refresh
-   * @param {boolean} [options.keyboard=false] - True to enable keyboard control
+   * dropdown, if enabled also cancels dropdown options rerender
+   * @param {boolean} [options.keyboard=true] - Enables keyboard control
    * @param {string} [options.modifier=false] - Additional class, e.g. BEM modifier
-   * @param {boolean || string} [options.placeholder=false] - Input placeholder
+   * @param {string} [options.placeholder=false] - Autocomplete input placeholder
    * @param {Function} [options.showCallback=false] - Fires after dropdown opens
    * @param {number || string} [options.transition=100] - jQuery slideUp/Down speed
    */
@@ -29,7 +29,7 @@
         block: 'custom-select',
         hideCallback: false,
         includeValue: false,
-        keyboard: false,
+        keyboard: true,
         modifier: false,
         placeholder: false,
         showCallback: false,
