@@ -1,10 +1,10 @@
-import $ from 'jquery';
+
 
 /*!
  * Custom Select jQuery Plugin
  */
 
-const CustomSelect = (($) => {
+var CustomSelect = function ($) {
 
   /**
    * Custom Select
@@ -44,14 +44,7 @@ const CustomSelect = (($) => {
         $.extend(defaults, options);
       }
 
-      $select
-        .hide()
-        .after(
-          '<div class="' + defaults.block + '">' +
-          '<button class="' + defaults.block + '__option ' + defaults.block + '__option--value"></button>' +
-          '<div class="' + defaults.block + '__dropdown"></div>' +
-          '</div>'
-        );
+      $select.hide().after('<div class="' + defaults.block + '">' + '<button class="' + defaults.block + '__option ' + defaults.block + '__option--value"></button>' + '<div class="' + defaults.block + '__dropdown"></div>' + '</div>');
 
       var $selectOptions = $select.find('option');
 
@@ -286,7 +279,4 @@ const CustomSelect = (($) => {
   }
 
   $.fn['customSelect'] = CustomSelect;
-
-})($);
-
-export default CustomSelect;
+}($);

@@ -1,10 +1,15 @@
 {
   "name": "jquery-custom-select",
   "description": "Custom Select jQuery Plugin",
-  "version": "1.0.3",
+  "version": "1.1.0",
   "author": "Sergey Kovalenko",
   "bugs": {
     "url": "https://github.com/kvlsrg/jquery-custom-select/issues"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-es2015-modules-strip": "^0.1.1",
+    "babel-preset-env": "^1.6.1"
   },
   "keywords": [
     "custom-select",
@@ -21,7 +26,7 @@
   },
   "sass": "jquery.custom-select.scss",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "js": "babel jquery.custom-select.js --out-dir dist"
   },
-  "style": "jquery.custom-select.min.css"
+  "style": "dist/jquery.custom-select.min.css"
 }
