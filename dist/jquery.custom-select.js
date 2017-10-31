@@ -44,7 +44,7 @@ var CustomSelect = function ($) {
         $.extend(defaults, options);
       }
 
-      $select.hide().after('<div class="' + defaults.block + '">' + '<button class="' + defaults.block + '__option ' + defaults.block + '__option--value"></button>' + '<div class="' + defaults.block + '__dropdown"></div>' + '</div>');
+      $select.hide().after('<div class="' + defaults.block + '">\n             <button class="' + defaults.block + '__option ' + defaults.block + '__option--value"></button>\n             <div class="' + defaults.block + '__dropdown"></div>\n           </div>');
 
       var $selectOptions = $select.find('option');
 
@@ -63,10 +63,11 @@ var CustomSelect = function ($) {
 
       createOptionsArray();
       $dropdown.html('').hide();
+      var $input = null;
 
       // Add autocomplete input
       if (defaults.autocomplete) {
-        var $input = $('<input class="' + defaults.block + '__input">');
+        $input = $('<input class="' + defaults.block + '__input">');
         if (defaults.placeholder) {
           $input.attr('placeholder', defaults.placeholder);
         }
@@ -91,10 +92,11 @@ var CustomSelect = function ($) {
       setDropdownToggle();
 
       var $dropdownOptions = $dropdown.find(dropdownOptions);
+      var $optionWrap = null;
 
       if (defaults.autocomplete) {
         $dropdownOptions.wrapAll('<div class="' + defaults.block + '__option-wrap"></div>');
-        var $optionWrap = $dropdown.find(customSelect + '__option-wrap');
+        $optionWrap = $dropdown.find(customSelect + '__option-wrap');
       }
 
       $dropdownOptions.on('click', function (event) {
@@ -126,10 +128,10 @@ var CustomSelect = function ($) {
 
             // Reset option class
             $option.attr('class', defaults.block + '__option');
-            $.each($selectOptions, function () {
-              var $this = $(this);
-              if ($this.text().trim() === optionsArray[i]) {
-                $option.addClass($this.attr('class'));
+            $.each($selectOptions, function (i, option) {
+              var $option = $(option);
+              if ($option.text().trim() === optionsArray[i]) {
+                $option.addClass($option.attr('class'));
               }
             });
           });
