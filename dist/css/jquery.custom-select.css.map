@@ -1,0 +1,12 @@
+{
+	"version": 3,
+	"file": "jquery.custom-select.css",
+	"sources": [
+		"../../jquery.custom-select.scss"
+	],
+	"sourcesContent": [
+		"//\r\n// Custom Select jQuery Plugin Base SCSS\r\n//\r\n\r\n$custom-select-class: \"custom-select\";\r\n$white: #fff !default;\r\n\r\n@mixin custom-select($block) {\r\n  .#{$block} {\r\n    position: relative;\r\n    background-color: $white;\r\n\r\n    &__option {\r\n      overflow: hidden;\r\n      box-sizing: border-box;\r\n      display: block;\r\n      width: 100%;\r\n      padding: 0 5px;\r\n      background-color: transparent;\r\n      border: 0;\r\n      border-radius: 0;\r\n      white-space: nowrap;\r\n      text-align: left;\r\n      text-overflow: ellipsis;\r\n      cursor: pointer;\r\n      user-select: none;\r\n      -webkit-appearance: none;\r\n      -moz-appearance: none;\r\n      appearance: none;\r\n    }\r\n\r\n    &__dropdown {\r\n      position: absolute;\r\n      box-sizing: border-box;\r\n      width: 100%;\r\n      top: 100%;\r\n      left: 0;\r\n      background-color: $white;\r\n    }\r\n    \r\n    &__input {\r\n      box-sizing: border-box;\r\n      display: block;\r\n      width: 100%;\r\n      padding: 0 5px;\r\n      border-width: 1px 0;\r\n      border-style: solid;\r\n      border-radius: 0;\r\n    }\r\n  }\r\n}\r\n\r\n@include custom-select($custom-select-class);\r\n"
+	],
+	"names": [],
+	"mappings": "AAQE,AAAA,cAAc,CAAH;EACT,QAAQ,EAAE,QAAQ;EAClB,gBAAgB,EALZ,IAAI;CA4CT;;AArCC,AAAA,sBAAS,CAAC;EACR,QAAQ,EAAE,MAAM;EAChB,UAAU,EAAE,UAAU;EACtB,OAAO,EAAE,KAAK;EACd,KAAK,EAAE,IAAI;EACX,OAAO,EAAE,KAAK;EACd,gBAAgB,EAAE,WAAW;EAC7B,MAAM,EAAE,CAAC;EACT,aAAa,EAAE,CAAC;EAChB,WAAW,EAAE,MAAM;EACnB,UAAU,EAAE,IAAI;EAChB,aAAa,EAAE,QAAQ;EACvB,MAAM,EAAE,OAAO;EACf,WAAW,EAAE,IAAI;EACjB,kBAAkB,EAAE,IAAI;EACxB,eAAe,EAAE,IAAI;EACrB,UAAU,EAAE,IAAI;CACjB;;AAED,AAAA,wBAAW,CAAC;EACV,QAAQ,EAAE,QAAQ;EAClB,UAAU,EAAE,UAAU;EACtB,KAAK,EAAE,IAAI;EACX,GAAG,EAAE,IAAI;EACT,IAAI,EAAE,CAAC;EACP,gBAAgB,EAhCd,IAAI;CAiCP;;AAED,AAAA,qBAAQ,CAAC;EACP,UAAU,EAAE,UAAU;EACtB,OAAO,EAAE,KAAK;EACd,KAAK,EAAE,IAAI;EACX,OAAO,EAAE,KAAK;EACd,YAAY,EAAE,KAAK;EACnB,YAAY,EAAE,KAAK;EACnB,aAAa,EAAE,CAAC;CACjB"
+}
