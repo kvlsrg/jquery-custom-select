@@ -283,3 +283,4 @@ var CustomSelect = function ($) {
 
   $.fn['customSelect'] = CustomSelect;
 }($);
+//# sourceMappingURL=jquery.custom-select.js.map
