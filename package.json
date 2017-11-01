@@ -9,7 +9,9 @@
   "devDependencies": {
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-es2015-modules-strip": "^0.1.1",
-    "babel-preset-env": "^1.6.1"
+    "babel-preset-env": "^1.6.1",
+    "node-sass": "^4.5.3",
+    "uglify-js": "^3.1.6"
   },
   "keywords": [
     "custom-select",
@@ -26,7 +28,8 @@
   },
   "sass": "jquery.custom-select.scss",
   "scripts": {
-    "js": "babel jquery.custom-select.js --out-dir dist"
+    "js": "babel jquery.custom-select.js --out-dir dist --source-maps && uglifyjs dist/jquery.custom-select.js --compress --source-map \"content=dist/jquery.custom-select.js.map,includeSources,url=jquery.custom-select.min.js.map\" --output dist/jquery.custom-select.min.js",
+    "sass": "node-sass --output-style expanded --source-map true --source-map-contents true jquery.custom-select.scss dist/jquery.custom-select.css && node-sass --output-style compressed --source-map true --source-map-contents true jquery.custom-select.scss dist/jquery.custom-select.min.css"
   },
-  "style": "dist/jquery.custom-select.min.css"
+  "style": "dist/jquery.custom-select.css"
 }

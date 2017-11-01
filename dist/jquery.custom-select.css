@@ -1,0 +1,44 @@
+.custom-select {
+  position: relative;
+  background-color: #fff;
+}
+
+.custom-select__option {
+  overflow: hidden;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  padding: 0 5px;
+  background-color: transparent;
+  border: 0;
+  border-radius: 0;
+  white-space: nowrap;
+  text-align: left;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  user-select: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.custom-select__dropdown {
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  top: 100%;
+  left: 0;
+  background-color: #fff;
+}
+
+.custom-select__input {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  padding: 0 5px;
+  border-width: 1px 0;
+  border-style: solid;
+  border-radius: 0;
+}
+
+/*# sourceMappingURL=jquery.custom-select.css.map */
