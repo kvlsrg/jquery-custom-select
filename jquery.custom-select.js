@@ -135,10 +135,11 @@ const CustomSelect = (($) => {
 
             // Reset option class
             $option.attr('class', `${defaults.block}__option`);
-            $.each($selectOptions, (i, option) => {
-              let $option = $(option);
-              if ($option.text().trim() === optionsArray[i]) {
-                $option.addClass($option.attr('class'));
+
+            $.each($selectOptions, function () {
+              let $this = $(this);
+              if ($this.text().trim() === optionsArray[i]) {
+                $option.addClass($this.attr('class'));
               }
             });
           });
