@@ -14,15 +14,15 @@ $('select').customSelect({
 
 Name | Type | Default | Description
 ---- | ---- | ------- | -----------
-autocomplete | boolean | false | Adds input to filter options
-block | string | 'custom-select' | Class name (BEM block name)
-hideCallback | Function | false | Fires after dropdown closes
-includeValue | boolean | false | Shows chosen value option in dropdown, if enabled also cancels dropdown options rerender
-keyboard | boolean | true | Enables keyboard control
-modifier | string | false | Additional class, e.g. BEM modifier
-placeholder | string | false | Autocomplete input placeholder
-showCallback | Function | false | Fires after dropdown opens
-transition | number &#124;&#124; string | 100 | jQuery slideUp/Down speed
+`autocomplete` | boolean | `false` | Adds input to filter options
+`block` | string | `'custom-select'` | Class name (BEM block name)
+`hideCallback` | Function | `false` | Fires after dropdown closes
+`includeValue` | boolean | `false` | Shows chosen value option in dropdown, if enabled also cancels dropdown options rerender
+`keyboard` | boolean | `true` | Enables keyboard control
+`modifier` | string | `false` | Additional class, e.g. BEM modifier
+`placeholder` | string | `false` | Autocomplete input placeholder
+`showCallback` | Function | `false` | Fires after dropdown opens
+`transition` | number &#124;&#124; string | `100` | jQuery slideUp/Down speed
 
 ### Style
 
