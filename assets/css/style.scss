@@ -3,6 +3,8 @@
 
 @import "{{ site.theme }}";
 
+@import "../../jquery.custom-select";
+
 .custom-select {
     position: relative;
     box-sizing: border-box;
