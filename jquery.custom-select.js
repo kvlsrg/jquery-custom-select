@@ -186,8 +186,9 @@ const CustomSelect = (($) => {
       }
 
       function hideDropdown() {
-        $customSelect.removeClass(customSelectActiveModifier);
         $dropdown.slideUp(defaults.transition, () => {
+          $customSelect.removeClass(customSelectActiveModifier);
+
           // Close callback
           if (typeof defaults.hideCallback === 'function') {
             defaults.hideCallback.call($customSelect[0]);
