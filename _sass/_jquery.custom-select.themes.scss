@@ -1,0 +1,168 @@
+//
+// Custom Select jQuery Plugin Demo SCSS
+//
+
+$themes: (
+  default: (
+    bg-color: #fff,
+    bg-color-hover: #f4f4f4,
+    border-color: #dbdbdb,
+    color: #333
+  ),
+  // Modifiers
+  dark: (
+    bg-color: #343436,
+    bg-color-hover: #1d1f20,
+    border-color: #000,
+    color: #fff
+  )
+);
+
+.custom-select {
+  $gutter: 0.75rem;
+
+  position: relative;
+  box-sizing: border-box;
+  display: block;
+  margin-bottom: 2rem;
+  text-align: left;
+  border: 1px solid;
+  border-radius: 4px;
+
+  @each $name, $theme in $themes {
+    $bg-color: map-get($theme, bg-color);
+    $border-color: map-get($theme, border-color);
+
+    @if ($name == default) {
+      background-color: $bg-color;
+      border-color: $border-color;
+    } @else {
+      &--#{$name} {
+        background-color: $bg-color;
+        border-color: $border-color;
+      }
+    }
+  }
+
+  @media (min-width: 480px) {
+    display: inline-block;
+    width: 10rem;
+  }
+
+  &--active {
+    z-index: 2;
+    border-radius: 4px 4px 0 0;
+  }
+
+  &__option {
+    position: relative;
+    height: 2rem;
+    padding: 0 $gutter;
+    font-size: 1rem;
+    line-height: 2rem;
+
+    &:focus {
+      outline: none;
+    }
+
+    &:hover,
+    &:focus {
+      @each $name, $theme in $themes {
+        $bg-color-hover: map-get($theme, bg-color-hover);
+
+        @if ($name == default) {
+          background-color: $bg-color-hover;
+        } @else {
+          .custom-select--#{$name} & {
+            background-color: $bg-color-hover;
+          }
+        }
+      }
+    }
+
+    &:last-of-type {
+      &:not(.custom-select__option--value) {
+        border-radius: 0 0 3px 3px;
+      }
+    }
+
+    &--value {
+      padding-right: $gutter * 2 + 0.375rem;
+      border-radius: 3px;
+
+      .custom-select--active & {
+        border-radius: 3px 3px 0 0;
+      }
+
+      &::after {
+        position: absolute;
+        box-sizing: border-box;
+        width: 0;
+        height: 0;
+        top: 50%;
+        right: 1rem;
+        margin-top: -3px;
+        border-width: 0.375rem;
+        border-bottom-width: 0;
+        border-style: solid;
+        border-color: currentColor transparent;
+        content: "";
+
+        .custom-select--active & {
+          transform: rotate(-180deg);
+        }
+      }
+    }
+
+    // Shows original options classes copying
+    &.bold {
+      font-weight: bold;
+    }
+  }
+
+  &__input {
+    height: 2rem;
+    padding: 0 $gutter;
+    border: 0;
+    outline: none;
+    font-size: 1rem;
+  }
+
+  &__option,
+  &__input {
+    @each $name, $theme in $themes {
+      $color: map-get($theme, color);
+
+      @if ($name == default) {
+        color: $color;
+      } @else {
+        .custom-select--#{$name} & {
+          color: $color;
+        }
+      }
+    }
+  }
+
+  &__dropdown {
+    box-sizing: content-box;
+    left: -1px;
+    border: 1px solid;
+    border-top-width: 0;
+    border-radius: 0 0 4px 4px;
+
+    @each $name, $theme in $themes {
+      $bg-color: map-get($theme, bg-color);
+      $border-color: map-get($theme, border-color);
+
+      @if ($name == default) {
+        background-color: $bg-color;
+        border-color: $border-color;
+      } @else {
+        .custom-select--#{$name} & {
+          background-color: $bg-color;
+          border-color: $border-color;
+        }
+      }
+    }
+  }
+}
