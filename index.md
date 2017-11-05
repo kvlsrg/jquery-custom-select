@@ -1,3 +1,7 @@
+---
+title: Custom Select jQuery Plugin
+---
+
 ### Custom select inited with default options
 
 <div markdown="0">
