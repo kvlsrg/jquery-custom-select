@@ -1,6 +1,8 @@
 # jquery-custom-select
 Custom Select jQuery Plugin
 
+[![npm version](https://img.shields.io/npm/v/jquery-custom-select.svg)](https://npmjs.com/package/jquery-custom-select)
+
 ### Usage
 
 ```js
