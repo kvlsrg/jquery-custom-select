@@ -13,13 +13,16 @@ const CustomSelect = (($) => {
    *
    * @param {Object} [options] - Settings object
    * @param {boolean} [options.autocomplete=false] - Adds input to filter options
+   * @param {string} [options.autocompletePlaceholder=false] - Autocomplete input
+   * placeholder hint (appears if autocomplete option is not false)
    * @param {string} [options.block=custom-select] - Class name (BEM block name)
    * @param {Function} [options.hideCallback=false] - Fires after dropdown closes
    * @param {boolean} [options.includeValue=false] - Shows chosen value option in
    * dropdown, if enabled also cancels dropdown options rerender
    * @param {boolean} [options.keyboard=true] - Enables keyboard control
    * @param {string} [options.modifier=false] - Additional class, e.g. BEM modifier
-   * @param {string} [options.placeholder=false] - Autocomplete input placeholder
+   * @param {string} [options.placeholder=false] - Custom select placeholder hint,
+   * can be an HTML string (appears if there is no explicitly selected options)
    * @param {Function} [options.showCallback=false] - Fires after dropdown opens
    * @param {number || string} [options.transition=100] - jQuery slideUp/Down speed
    */
@@ -30,6 +33,7 @@ const CustomSelect = (($) => {
 
       const defaults = {
         autocomplete: false,
+        autocompletePlaceholder: false,
         block: 'custom-select',
         hideCallback: false,
         includeValue: false,
@@ -75,10 +79,15 @@ const CustomSelect = (($) => {
       // Add autocomplete input
       if (defaults.autocomplete) {
         $input = $(`<input class="${defaults.block}__input">`);
-        if (defaults.placeholder) {
-          $input.attr('placeholder', defaults.placeholder);
+        if (defaults.autocompletePlaceholder) {
+          $input.attr('placeholder', defaults.autocompletePlaceholder);
         }
         $dropdown.append($input);
+      }
+
+      // Disable placeholder if there is explicitly selected option
+      if ($select.find('[selected]').length) {
+        defaults.placeholder = false;
       }
 
       // Create custom select options
@@ -87,8 +96,15 @@ const CustomSelect = (($) => {
         let $currentOption = $(dropdownOptionHtml).text(el).addClass(cssClass);
 
         if (el === $select.find(':selected').text().trim()) {
-          $customSelectValue.text(el).addClass(cssClass).data('class', cssClass);
-          if (defaults.includeValue) {
+          if (!defaults.placeholder) {
+            $customSelectValue.text(el);
+          } else {
+            $customSelectValue.html(defaults.placeholder);
+            // Set select value to null
+            $select.prop('selectedIndex', -1);
+          }
+          $customSelectValue.addClass(cssClass).data('class', cssClass);
+          if (defaults.includeValue || defaults.placeholder) {
             $dropdown.append($currentOption);
           }
         } else {
@@ -129,6 +145,9 @@ const CustomSelect = (($) => {
 
         // Recreate custom select dropdown options
         if (!defaults.includeValue) {
+          if ($dropdownOptions.length > optionsArray.length - 1) {
+            $dropdownOptions.eq(optionsArray.length).remove();
+          }
           $.each($dropdownOptions, (i, option) => {
             let $option = $(option);
             $option.text(optionsArray[i]);
@@ -146,6 +165,7 @@ const CustomSelect = (($) => {
         }
 
         createOptionsArray();
+
         if (typeof event.originalEvent !== 'undefined') {
           $select.trigger('change');
         }
