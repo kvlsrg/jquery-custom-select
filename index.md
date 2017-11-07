@@ -18,7 +18,7 @@ title: Custom Select jQuery Plugin
 </div>
 
 ```js
-$('.select--default').customSelect();
+$('select').customSelect();
 ```
 ### Placeholder hint
 
@@ -38,7 +38,13 @@ $('.select--default').customSelect();
 </div>
 
 ```js
-$('.select--placeholder').customSelect({
+$('select').customSelect({
   placeholder: '<span style="color: gray;">Please Select</span>'
 });
 ```
+
+<script markdown="0">
+  $('.select').on('change', function () {
+    console.log($(this).val());
+  });
+</script>
