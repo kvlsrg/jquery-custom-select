@@ -1,7 +1,7 @@
 {
   "name": "jquery-custom-select",
   "description": "Custom Select jQuery Plugin",
-  "version": "1.1.1",
+  "version": "1.2.1",
   "author": "Sergey Kovalenko",
   "bugs": {
     "url": "https://github.com/kvlsrg/jquery-custom-select/issues"
@@ -10,8 +10,8 @@
     "babel-cli": "^6.26.0",
     "babel-plugin-transform-es2015-modules-strip": "^0.1.1",
     "babel-preset-env": "^1.6.1",
-    "node-sass": "^4.5.3",
-    "uglify-js": "^3.1.6"
+    "node-sass": "^4.6.0",
+    "uglify-js": "^3.1.8"
   },
   "keywords": [
     "custom-select",
