@@ -116,6 +116,7 @@ var CustomSelect = function ($) {
       }
 
       $dropdownOptions.on('click', function (event) {
+        event.preventDefault();
         var choice = $(this).text().trim();
         $customSelectValue.text(choice).removeClass($customSelectValue.data('class'));
         $selectOptions.prop('selected', false);
@@ -226,7 +227,8 @@ var CustomSelect = function ($) {
       }
 
       function setDropdownToggle() {
-        $customSelectValue.one('click', function () {
+        $customSelectValue.one('click', function (event) {
+          event.preventDefault();
           var windowEvent = 'ontouchstart' in document.documentElement ? 'touchstart' : 'click';
 
           $customSelect.addClass(customSelectActiveModifier);
@@ -238,7 +240,8 @@ var CustomSelect = function ($) {
           });
 
           $(window).on(windowEvent, windowEventHandler);
-          $customSelectValue.one('click', function () {
+          $customSelectValue.one('click', function (event) {
+            event.preventDefault();
             hideDropdown();
           });
 
