@@ -84,8 +84,8 @@ $themes: (
       }
     }
 
-    &:last-of-type {
-      &:not(.custom-select__option--value) {
+    &:not(&--value) {
+      &:last-of-type {
         border-bottom-width: 1px;
         border-radius: 0 0 0.3rem 0.3rem;
       }
