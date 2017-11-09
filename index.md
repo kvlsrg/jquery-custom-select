@@ -43,6 +43,29 @@ $('select').customSelect({
 });
 ```
 
+### Block modifier (additional CSS class)
+
+<div markdown="0">
+  <select class="select select--modifier">
+    <option value="0">All</option>
+    <option value="2">Second Item</option>
+    <option value="3">Third Item</option>
+    <option value="4">Fourth Item</option>
+    <option value="5">Fifth Very Very Long Item</option>
+  </select>
+  <script>
+    $('.select--modifier').customSelect({
+      modifier: 'custom-select--dark'
+    });
+  </script>
+</div>
+
+```js
+$('select').customSelect({
+  modifier: 'custom-select--dark'
+});
+```
+
 <script markdown="0">
   $('.select').on('change', function () {
     console.log($(this).val());
