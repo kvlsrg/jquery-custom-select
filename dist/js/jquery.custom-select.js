@@ -211,7 +211,7 @@ var CustomSelect = function ($) {
           }
         });
 
-        $(window).off('click touchstart', outsideClickHandler).off('resize', toggleDropupModifier);
+        $(window).off('touchstart click', outsideClickHandler).off('resize scroll', toggleDropupModifier);
         $customSelectValue.off('click');
         setDropdownToggle();
 
@@ -236,7 +236,7 @@ var CustomSelect = function ($) {
 
           // Set dropdown position
           toggleDropupModifier();
-          $(window).on('resize', toggleDropupModifier);
+          $(window).on('resize scroll', toggleDropupModifier);
 
           $dropdown.slideDown(defaults.transition, function () {
             // Open callback

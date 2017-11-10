@@ -221,8 +221,8 @@ const CustomSelect = (($) => {
         });
 
         $(window)
-          .off('click touchstart', outsideClickHandler)
-          .off('resize', toggleDropupModifier);
+          .off('touchstart click', outsideClickHandler)
+          .off('resize scroll', toggleDropupModifier);
         $customSelectValue.off('click');
         setDropdownToggle();
 
@@ -247,7 +247,7 @@ const CustomSelect = (($) => {
 
           // Set dropdown position
           toggleDropupModifier();
-          $(window).on('resize', toggleDropupModifier);
+          $(window).on('resize scroll', toggleDropupModifier);
 
           $dropdown.slideDown(defaults.transition, () => {
             // Open callback
