@@ -36,8 +36,13 @@ $white: #fff !default;
       top: 100%;
       left: 0;
       background-color: $white;
+
+      .#{$block}--dropup & {
+        top: auto;
+        bottom: 100%;
+      }
     }
-    
+
     &__input {
       box-sizing: border-box;
       display: block;

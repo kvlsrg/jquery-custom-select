@@ -54,6 +54,7 @@ var CustomSelect = function ($) {
 
       var customSelect = '.' + defaults.block;
       var customSelectActiveModifier = defaults.block + '--active';
+      var customSelectDropupModifier = defaults.block + '--dropup';
       var dropdownOptionHtml = '<button class="' + defaults.block + '__option"></button>';
       var dropdownOptions = customSelect + '__option';
 
@@ -125,6 +126,7 @@ var CustomSelect = function ($) {
           if (!defaults.includeValue && el === choice) {
             optionsArray.splice(i, 1);
           }
+
           $.each($selectOptions, function (i, option) {
             var $option = $(option);
             if ($option.text().trim() === choice) {
@@ -201,7 +203,7 @@ var CustomSelect = function ($) {
 
       function hideDropdown() {
         $dropdown.slideUp(defaults.transition, function () {
-          $customSelect.removeClass(customSelectActiveModifier);
+          $customSelect.removeClass(customSelectActiveModifier).removeClass(customSelectDropupModifier);
 
           // Close callback
           if (typeof defaults.hideCallback === 'function') {
@@ -209,7 +211,7 @@ var CustomSelect = function ($) {
           }
         });
 
-        $(window).off('click touchstart', windowEventHandler);
+        $(window).off('click touchstart', outsideClickHandler).off('resize', toggleDropupModifier);
         $customSelectValue.off('click');
         setDropdownToggle();
 
@@ -229,9 +231,13 @@ var CustomSelect = function ($) {
       function setDropdownToggle() {
         $customSelectValue.one('click', function (event) {
           event.preventDefault();
-          var windowEvent = 'ontouchstart' in document.documentElement ? 'touchstart' : 'click';
 
           $customSelect.addClass(customSelectActiveModifier);
+
+          // Set dropdown position
+          toggleDropupModifier();
+          $(window).on('resize', toggleDropupModifier);
+
           $dropdown.slideDown(defaults.transition, function () {
             // Open callback
             if (typeof defaults.showCallback === 'function') {
@@ -239,7 +245,7 @@ var CustomSelect = function ($) {
             }
           });
 
-          $(window).on(windowEvent, windowEventHandler);
+          $(window).on('ontouchstart' in document.documentElement ? 'touchstart' : 'click', outsideClickHandler);
           $customSelectValue.one('click', function (event) {
             event.preventDefault();
             hideDropdown();
@@ -252,7 +258,12 @@ var CustomSelect = function ($) {
         });
       }
 
-      function windowEventHandler(event) {
+      function toggleDropupModifier() {
+        var bottom = $customSelect[0].getBoundingClientRect().bottom;
+        $customSelect.toggleClass(customSelectDropupModifier, $(window).height() - bottom < $dropdown.height());
+      }
+
+      function outsideClickHandler(event) {
         var $target = $(event.target);
         if (!$target.parents().is($customSelect) && !$target.is($customSelect)) {
           hideDropdown();
