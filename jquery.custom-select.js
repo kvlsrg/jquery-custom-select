@@ -61,6 +61,7 @@ const CustomSelect = (($) => {
 
       const customSelect = `.${defaults.block}`;
       const customSelectActiveModifier = `${defaults.block}--active`;
+      const customSelectDropupModifier = `${defaults.block}--dropup`;
       const dropdownOptionHtml = `<button class="${defaults.block}__option"></button>`;
       const dropdownOptions = `${customSelect}__option`;
 
@@ -132,6 +133,7 @@ const CustomSelect = (($) => {
           if (!defaults.includeValue && el === choice) {
             optionsArray.splice(i, 1);
           }
+
           $.each($selectOptions, function (i, option) {
             let $option = $(option);
             if ($option.text().trim() === choice) {
@@ -208,7 +210,9 @@ const CustomSelect = (($) => {
 
       function hideDropdown() {
         $dropdown.slideUp(defaults.transition, () => {
-          $customSelect.removeClass(customSelectActiveModifier);
+          $customSelect
+            .removeClass(customSelectActiveModifier)
+            .removeClass(customSelectDropupModifier);
 
           // Close callback
           if (typeof defaults.hideCallback === 'function') {
@@ -216,7 +220,9 @@ const CustomSelect = (($) => {
           }
         });
 
-        $(window).off('click touchstart', windowEventHandler);
+        $(window)
+          .off('click touchstart', outsideClickHandler)
+          .off('resize', toggleDropupModifier);
         $customSelectValue.off('click');
         setDropdownToggle();
 
@@ -236,9 +242,13 @@ const CustomSelect = (($) => {
       function setDropdownToggle() {
         $customSelectValue.one('click', (event) => {
           event.preventDefault();
-          const windowEvent = 'ontouchstart' in document.documentElement ? 'touchstart' : 'click';
 
           $customSelect.addClass(customSelectActiveModifier);
+
+          // Set dropdown position
+          toggleDropupModifier();
+          $(window).on('resize', toggleDropupModifier);
+
           $dropdown.slideDown(defaults.transition, () => {
             // Open callback
             if (typeof defaults.showCallback === 'function') {
@@ -246,7 +256,7 @@ const CustomSelect = (($) => {
             }
           });
 
-          $(window).on(windowEvent, windowEventHandler);
+          $(window).on('ontouchstart' in document.documentElement ? 'touchstart' : 'click', outsideClickHandler);
           $customSelectValue.one('click', (event) => {
             event.preventDefault();
             hideDropdown();
@@ -259,7 +269,12 @@ const CustomSelect = (($) => {
         });
       }
 
-      function windowEventHandler(event) {
+      function toggleDropupModifier() {
+        let bottom = $customSelect[0].getBoundingClientRect().bottom;
+        $customSelect.toggleClass(customSelectDropupModifier, $(window).height() - bottom < $dropdown.height());
+      }
+
+      function outsideClickHandler(event) {
         let $target = $(event.target);
         if (!$target.parents().is($customSelect) && !$target.is($customSelect)) {
           hideDropdown();
