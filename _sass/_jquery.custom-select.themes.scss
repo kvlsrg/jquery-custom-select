@@ -5,7 +5,7 @@
 $themes: (
   default: (
     bg-color: #fff,
-    bg-color-hover: #f4f4f4,
+    bg-color-hover: #f2f2f2,
     border-color: #dbdbdb,
     color: #333
   ),
@@ -35,31 +35,22 @@ $themes: (
 
   &--active {
     z-index: 2;
-    border-radius: 4px 4px 0 0;
   }
 
   &__option {
     position: relative;
     height: 2rem;
     padding: 0 $gutter;
-    border-width: 0 1px 0 1px;
-    border-style: solid;
     font-size: 1rem;
     line-height: 2rem;
 
     @each $name, $theme in $themes {
-      $bg-color: map-get($theme, bg-color);
-      $border-color: map-get($theme, border-color);
       $color: map-get($theme, color);
 
       @if ($name == default) {
-        background-color: $bg-color;
-        border-color: $border-color;
         color: $color;
       } @else {
         .custom-select--#{$name} & {
-          background-color: $bg-color;
-          border-color: $border-color;
           color: $color;
         }
       }
@@ -84,21 +75,36 @@ $themes: (
       }
     }
 
-    &:not(&--value) {
-      &:last-of-type {
-        border-bottom-width: 1px;
-        border-radius: 0 0 0.3rem 0.3rem;
-      }
-    }
-
     &--value {
       padding-right: $gutter * 2 + 0.375rem;
-      border-width: 1px;
+      border: 1px solid;
       border-radius: 0.3rem;
+      font-weight: 700;
+
+      @each $name, $theme in $themes {
+        $bg-color: map-get($theme, bg-color);
+        $border-color: map-get($theme, border-color);
+
+        @if ($name == default) {
+          background-color: $bg-color;
+          border-color: $border-color;
+        } @else {
+          .custom-select--#{$name} & {
+            background-color: $bg-color;
+            border-color: $border-color;
+          }
+        }
+      }
 
       .custom-select--active & {
-        border-radius: 0.3rem 0.3rem 0 0;
         border-bottom-width: 0;
+        border-radius: 0.3rem 0.3rem 0 0;
+
+        @at-root .custom-select--dropup#{&} {
+          border-top-color: transparent;
+          border-bottom-width: 1px;
+          border-radius: 0 0 0.3rem 0.3rem;
+        }
       }
 
       &::after {
@@ -130,10 +136,14 @@ $themes: (
   &__input {
     $default: map-get($themes, default);
 
+    position: relative;
+    z-index: 1;
     height: 2rem;
+    margin-top: -1px;
     padding: 0 $gutter;
-    border-width: 1px;
+    border-width: 1px 0;
     outline: none;
+    transform: translateY(1px);
     font-size: 1rem;
     color: map-get($default, color);
 
@@ -148,9 +158,38 @@ $themes: (
         }
       }
     }
+
+    .custom-select--dropup & {
+      border-top-width: 0;
+      margin-top: 0;
+      transform: translateY(0);
+    }
   }
 
   &__dropdown {
-    background-color: transparent;
+    overflow: hidden;
+    border-width: 0 1px 1px;
+    border-style: solid;
+    border-radius: 0 0 0.3rem 0.3rem;
+
+    @each $name, $theme in $themes {
+      $bg-color: map-get($theme, bg-color);
+      $border-color: map-get($theme, border-color);
+
+      @if ($name == default) {
+        background-color: $bg-color;
+        border-color: $border-color;
+      } @else {
+        .custom-select--#{$name} & {
+          background-color: $bg-color;
+          border-color: $border-color;
+        }
+      }
+    }
+
+    .custom-select--dropup & {
+      border-width: 1px 1px 0;
+      border-radius: 0.3rem 0.3rem 0 0;
+    }
   }
 }
