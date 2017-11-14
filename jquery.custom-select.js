@@ -115,6 +115,7 @@ const CustomSelect = (($) => {
             .addClass(cssClass).data('class', cssClass);
 
           if (this._options.includeValue || this._options.placeholder) {
+            $option.addClass(cssClass);
             this._$dropdown.append($option);
           }
         } else {
