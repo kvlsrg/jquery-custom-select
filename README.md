@@ -6,25 +6,20 @@ Custom Select jQuery Plugin
 ### Usage
 
 ```js
-$('select').customSelect({
-  autocomplete: true,
-  autocompletePlaceholder: 'Search...',
-  modifier: 'custom-select--dark'
-});
+$('select').customSelect();
 ```
 
 ### Options
 
 Name | Type | Default | Description
 ---- | ---- | ------- | -----------
-`autocomplete` | boolean | `false` | Adds input to filter options
-`autocompletePlaceholder` | string | `false` | Autocomplete input placeholder hint (appears if autocomplete option is not false)
 `block` | string | `'custom-select'` | Class name (BEM block name)
 `hideCallback` | Function | `false` | Fires after dropdown closes
 `includeValue` | boolean | `false` | Shows chosen value option in dropdown, if enabled also cancels dropdown options rerender
 `keyboard` | boolean | `true` | Enables keyboard control
 `modifier` | string | `false` | Additional class, e.g. BEM modifier
 `placeholder` | string | `false` | Custom select placeholder hint, can be an HTML string (appears if there is no explicitly selected options)
+`search` | boolean | `false` | Adds input to search options
 `showCallback` | Function | `false` | Fires after dropdown opens
 `transition` | number &#124;&#124; string | `100` | jQuery slideUp/Down speed
 
