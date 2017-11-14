@@ -105,6 +105,8 @@ var CustomSelect = function ($) {
           _this._$value.text(el).addClass(cssClass).data('class', cssClass);
 
           if (_this._options.includeValue || _this._options.placeholder) {
+            $option.addClass(cssClass);
+
             _this._$dropdown.append($option);
           }
         } else {
