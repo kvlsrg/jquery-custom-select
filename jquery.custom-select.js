@@ -277,11 +277,13 @@ const CustomSelect = (($) => {
 
       this._$input.on('focus', () => {
         this._options.index = -1;
-        this._$wrap.scrollTop(0);
       });
 
       this._$input.on('keyup', () => {
         let query = this._$input.val().trim();
+
+        this._$wrap.scrollTop(0);
+
         if (query.length) {
           setTimeout(() => {
             if (query === this._$input.val().trim()) {

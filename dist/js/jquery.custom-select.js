@@ -276,12 +276,12 @@ var CustomSelect = function ($) {
 
       this._$input.on('focus', function () {
         _this5._options.index = -1;
-
-        _this5._$wrap.scrollTop(0);
       });
 
       this._$input.on('keyup', function () {
         var query = _this5._$input.val().trim();
+
+        _this5._$wrap.scrollTop(0);
 
         if (query.length) {
           setTimeout(function () {
