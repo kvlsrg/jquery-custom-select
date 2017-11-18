@@ -2,7 +2,9 @@
 title: Custom Select jQuery Plugin
 ---
 
-### Custom select inited with default options
+## Options
+
+#### Custom select inited with default options
 
 <div markdown="0">
   <select class="select select--default">
@@ -20,7 +22,7 @@ title: Custom Select jQuery Plugin
 ```js
 $('select').customSelect();
 ```
-### Placeholder hint
+#### Placeholder hint
 
 <div markdown="0">
   <select class="select select--placeholder">
@@ -43,7 +45,7 @@ $('select').customSelect({
 });
 ```
 
-### Block modifier (additional CSS class)
+#### Block modifier (additional CSS class)
 
 <div markdown="0">
   <select class="select select--modifier">
@@ -66,7 +68,7 @@ $('select').customSelect({
 });
 ```
 
-### Included in dropdown current value
+#### Included in dropdown current value
 
 Dropdown always includes all options of original select, current value don't removes.
 
