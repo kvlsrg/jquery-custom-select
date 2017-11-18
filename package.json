@@ -9,6 +9,7 @@
   "devDependencies": {
     "@babel/cli": "^7.0.0-beta.32",
     "@babel/core": "^7.0.0-beta.32",
+    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.32",
     "@babel/preset-env": "^7.0.0-beta.32",
     "babel-plugin-transform-es2015-modules-strip": "^0.1.1",
     "node-sass": "^4.6.1",
