@@ -319,35 +319,35 @@ const CustomSelect = (($) => {
     }
 
     _keydown(event) {
-      const $visibleOptions = this._$options.filter(':visible');
+      const $visible = this._$options.filter(':visible');
 
       switch (event.keyCode) {
         // Down
         case 40:
           event.preventDefault();
 
-          const next = this._$dropdown.find($visibleOptions).eq(this._options.index + 1).length;
+          const next = $visible.eq(this._options.index + 1).length;
           if (next) {
             this._options.index += 1;
           } else {
             this._options.index = 0;
           }
 
-          this._$dropdown.find($visibleOptions).eq(this._options.index).focus();
+          $visible.eq(this._options.index).focus();
           break;
 
         // Up
         case 38:
           event.preventDefault();
 
-          const prev = this._$dropdown.find($visibleOptions).eq(this._options.index - 1).length;
+          const prev = $visible.eq(this._options.index - 1).length;
           if (prev && this._options.index - 1 >= 0) {
             this._options.index -= 1;
           } else {
-            this._options.index = this._$dropdown.find($visibleOptions).length - 1;
+            this._options.index = $visible.length - 1;
           }
 
-          this._$dropdown.find($visibleOptions).eq(this._options.index).focus();
+          $visible.eq(this._options.index).focus();
           break;
 
         // Enter

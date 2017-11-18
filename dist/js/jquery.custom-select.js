@@ -318,14 +318,13 @@ var CustomSelect = function ($) {
     };
 
     _proto._keydown = function _keydown(event) {
-      var $visibleOptions = this._$options.filter(':visible');
+      var $visible = this._$options.filter(':visible');
 
       switch (event.keyCode) {
         // Down
         case 40:
           event.preventDefault();
-
-          var next = this._$dropdown.find($visibleOptions).eq(this._options.index + 1).length;
+          var next = $visible.eq(this._options.index + 1).length;
 
           if (next) {
             this._options.index += 1;
@@ -333,24 +332,21 @@ var CustomSelect = function ($) {
             this._options.index = 0;
           }
 
-          this._$dropdown.find($visibleOptions).eq(this._options.index).focus();
-
+          $visible.eq(this._options.index).focus();
           break;
         // Up
 
         case 38:
           event.preventDefault();
-
-          var prev = this._$dropdown.find($visibleOptions).eq(this._options.index - 1).length;
+          var prev = $visible.eq(this._options.index - 1).length;
 
           if (prev && this._options.index - 1 >= 0) {
             this._options.index -= 1;
           } else {
-            this._options.index = this._$dropdown.find($visibleOptions).length - 1;
+            this._options.index = $visible.length - 1;
           }
 
-          this._$dropdown.find($visibleOptions).eq(this._options.index).focus();
-
+          $visible.eq(this._options.index).focus();
           break;
         // Enter
 
