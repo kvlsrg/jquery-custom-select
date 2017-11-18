@@ -240,7 +240,10 @@ var CustomSelect = function ($) {
 
       if (!this._options.includeValue) {
         if (this._$options.length > values.length) {
-          this._$options.eq(values.length).remove();
+          var last = this._$options.eq(values.length);
+
+          last.remove();
+          this._$options = this._$options.not(last);
         }
 
         $.each(this._$options, function (i, option) {

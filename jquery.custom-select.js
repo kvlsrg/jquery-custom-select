@@ -245,7 +245,9 @@ const CustomSelect = (($) => {
       // Update dropdown options content
       if (!this._options.includeValue) {
         if (this._$options.length > values.length) {
-          this._$options.eq(values.length).remove();
+          const last = this._$options.eq(values.length);
+          last.remove();
+          this._$options = this._$options.not(last);
         }
 
         $.each(this._$options, (i, option) => {
