@@ -62,7 +62,7 @@ var CustomSelect = function ($) {
     _proto._init = function _init() {
       var _this = this;
 
-      this._$element = $("<div class=\"" + this._options.block + "\">\n           <button class=\"" + this._options.block + "__option " + this._options.block + "__option--value\"></button>\n           <div class=\"" + this._options.block + "__dropdown\" style=\"display: none;\"></div>\n         </div>");
+      this._$element = $("<div class=\"" + this._options.block + "\">\n           <button class=\"" + this._options.block + "__option " + this._options.block + "__option--value\" type=\"button\"></button>\n           <div class=\"" + this._options.block + "__dropdown\" style=\"display: none;\"></div>\n         </div>");
 
       this._$select.hide().after(this._$element);
 
@@ -97,7 +97,7 @@ var CustomSelect = function ($) {
       $.each(this._values, function (i, el) {
         var cssClass = _this._$values.eq(i).attr('class');
 
-        var $option = $("<button class=\"" + _this._options.block + "__option\">" + el + "</button>");
+        var $option = $("<button class=\"" + _this._options.block + "__option\" type=\"button\">" + el + "</button>");
 
         if (el === _this._$select.find(':selected').text().trim()) {
           _this._$value.text(el).addClass(cssClass).data('class', cssClass);
