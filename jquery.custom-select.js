@@ -17,8 +17,7 @@ const CustomSelect = (($) => {
     showCallback: false,
     transition: 100,
 
-    // Deprecated options
-    // TODO: Remove in v1.3.1
+    // TODO: Remove deprecated in v1.4.0
     autocomplete: false
   };
 
@@ -50,7 +49,11 @@ const CustomSelect = (($) => {
       this._dropup = this._dropup.bind(this);
       this._outside = this._outside.bind(this);
 
-      // TODO: Remove in v1.3.1
+      // Modifiers
+      this._activeModifier = `${this._options.block}--active`;
+      this._dropupModifier = `${this._options.block}--dropup`;
+
+      // TODO: Remove in v1.4.0
       if (this._options.autocomplete) {
         this._options.search = true;
         console.warn('Option `autocomplete` is deprecated since v1.3.0! Please, use `search` instead.');
@@ -62,8 +65,8 @@ const CustomSelect = (($) => {
     _init() {
       this._$element = $(
         `<div class="${this._options.block}">
-           <button class="${this._options.block}__option ${this._options.block}__option--value"></button>
-           <div class="${this._options.block}__dropdown"></div>
+           <button class="${this._options.block}__option ${this._options.block}__option--value" type="button"></button>
+           <div class="${this._options.block}__dropdown" style="display: none;"></div>
          </div>`
       );
 
@@ -71,27 +74,20 @@ const CustomSelect = (($) => {
         .hide()
         .after(this._$element);
 
-      // Modifiers
-      this._activeModifier = `${this._options.block}--active`;
-      this._dropupModifier = `${this._options.block}--dropup`;
-
-      this._$value = this._$element.find(`.${this._options.block}__option--value`);
-      this._$dropdown = this._$element.find(`.${this._options.block}__dropdown`);
-
       if (this._options.modifier) {
         this._$element.addClass(this._options.modifier);
       }
 
-      this._$dropdown.html('').hide();
-
       // Create values array
+      this._$values = this._$select.find('option');
       this._values = [];
-      this._$selectOptions = this._$select.find('option');
 
-      $.each(this._$selectOptions, (i, option) => {
-        let el = $(option).text().trim();
+      $.each(this._$values, (i, option) => {
+        const el = $(option).text().trim();
         this._values.push(el);
       });
+
+      this._$value = this._$element.find(`.${this._options.block}__option--value`);
 
       if (this._options.placeholder) {
         // Disable placeholder if there is explicitly selected option
@@ -104,10 +100,14 @@ const CustomSelect = (($) => {
         }
       }
 
-      // Render custom select options
+      this._$dropdown = this._$element.find(`.${this._options.block}__dropdown`);
+
+      // Render options
       $.each(this._values, (i, el) => {
-        let cssClass = this._$selectOptions.eq(i).attr('class');
-        let $option = $(`<button class="${this._options.block}__option">${el}</button>`);
+        const cssClass = this._$values.eq(i).attr('class');
+        const $option = $(
+          `<button class="${this._options.block}__option" type="button">${el}</button>`
+        );
 
         if (el === this._$select.find(':selected').text().trim()) {
           this._$value
@@ -127,6 +127,7 @@ const CustomSelect = (($) => {
       this._$value.one('click', (event) => {
         this._show(event);
       });
+
       this._$options = this._$dropdown.find(`.${this._options.block}__option`);
       this._$options.on('click', (event) => {
         this._select(event);
@@ -157,8 +158,8 @@ const CustomSelect = (($) => {
         }
       });
 
-      let outsideClickEvent = 'ontouchstart' in document.documentElement ? 'touchstart' : 'click';
       setTimeout(() => {
+        const outsideClickEvent = 'ontouchstart' in document.documentElement ? 'touchstart' : 'click';
         $(window).on(outsideClickEvent, this._outside);
       }, 0);
 
@@ -172,6 +173,10 @@ const CustomSelect = (($) => {
         this._options.index = -1;
         $(window).on('keydown', this._keydown);
       }
+
+      // Modifiers
+      this._activeModifier = `${this._options.block}--active`;
+      this._dropupModifier = `${this._options.block}--dropup`;
     }
 
     _hide() {
@@ -219,17 +224,17 @@ const CustomSelect = (($) => {
       this._$value
         .text(choice)
         .removeClass(this._$value.data('class'));
-      this._$selectOptions.prop('selected', false);
+      this._$values.prop('selected', false);
 
       $.each(values, (i, el) => {
         if (!this._options.includeValue && el === choice) {
           values.splice(i, 1);
         }
 
-        $.each(this._$selectOptions, (i, option) => {
-          let $option = $(option);
+        $.each(this._$values, (i, option) => {
+          const $option = $(option);
           if ($option.text().trim() === choice) {
-            let cssClass = $option.attr('class');
+            const cssClass = $option.attr('class');
 
             $option.prop('selected', true);
             this._$value.addClass(cssClass).data('class', cssClass);
@@ -242,18 +247,20 @@ const CustomSelect = (($) => {
       // Update dropdown options content
       if (!this._options.includeValue) {
         if (this._$options.length > values.length) {
-          this._$options.eq(values.length).remove();
+          const last = this._$options.eq(values.length);
+          last.remove();
+          this._$options = this._$options.not(last);
         }
 
         $.each(this._$options, (i, option) => {
-          let $option = $(option);
+          const $option = $(option);
           $option.text(values[i]);
 
           // Reset option class
           $option.attr('class', `${this._options.block}__option`);
 
-          $.each(this._$selectOptions, function() {
-            let $this = $(this);
+          $.each(this._$values, function() {
+            const $this = $(this);
             if ($this.text().trim() === values[i]) {
               $option.addClass($this.attr('class'));
             }
@@ -267,7 +274,6 @@ const CustomSelect = (($) => {
     }
 
     _search() {
-      // Add search input
       this._$input = $(`<input class="${this._options.block}__input" autocomplete="off">`);
       this._$dropdown.prepend(this._$input);
 
@@ -277,18 +283,20 @@ const CustomSelect = (($) => {
 
       this._$input.on('focus', () => {
         this._options.index = -1;
-        this._$wrap.scrollTop(0);
       });
 
       this._$input.on('keyup', () => {
-        let query = this._$input.val().trim();
+        const query = this._$input.val().trim();
+
+        this._$wrap.scrollTop(0);
+
         if (query.length) {
           setTimeout(() => {
             if (query === this._$input.val().trim()) {
               $.each(this._$options, (i, option) => {
-                let $option = $(option);
-                let text = $option.text().trim().toLowerCase();
-                let match = text.indexOf(query.toLowerCase()) !== -1;
+                const $option = $(option);
+                const text = $option.text().trim().toLowerCase();
+                const match = text.indexOf(query.toLowerCase()) !== -1;
 
                 $option.toggle(match);
               });
@@ -301,49 +309,49 @@ const CustomSelect = (($) => {
     }
 
     _dropup() {
-      let bottom = this._$element[0].getBoundingClientRect().bottom;
-      let up = $(window).height() - bottom < this._$dropdown.height();
+      const bottom = this._$element[0].getBoundingClientRect().bottom;
+      const up = $(window).height() - bottom < this._$dropdown.height();
 
       this._$element.toggleClass(this._dropupModifier, up);
     }
 
     _outside(event) {
-      let $target = $(event.target);
+      const $target = $(event.target);
       if (!$target.parents().is(this._$element) && !$target.is(this._$element)) {
         this._hide();
       }
     }
 
     _keydown(event) {
-      let visibleOptions = this._$options.filter(':visible');
+      const $visible = this._$options.filter(':visible');
 
       switch (event.keyCode) {
         // Down
         case 40:
           event.preventDefault();
 
-          let next = this._$dropdown.find(visibleOptions).eq(this._options.index + 1).length;
-          if (next !== 0) {
+          const next = $visible.eq(this._options.index + 1).length;
+          if (next) {
             this._options.index += 1;
           } else {
             this._options.index = 0;
           }
 
-          this._$dropdown.find(visibleOptions).eq(this._options.index).focus();
+          $visible.eq(this._options.index).focus();
           break;
 
         // Up
         case 38:
           event.preventDefault();
 
-          let prev = this._$dropdown.find(visibleOptions).eq(this._options.index - 1).length;
-          if (prev !== 0 && this._options.index - 1 >= 0) {
+          const prev = $visible.eq(this._options.index - 1).length;
+          if (prev && this._options.index - 1 >= 0) {
             this._options.index -= 1;
           } else {
-            this._options.index = this._$dropdown.find(visibleOptions).length - 1;
+            this._options.index = $visible.length - 1;
           }
 
-          this._$dropdown.find(visibleOptions).eq(this._options.index).focus();
+          $visible.eq(this._options.index).focus();
           break;
 
         // Enter
@@ -354,7 +362,7 @@ const CustomSelect = (($) => {
           if (!this._$input || !this._$input.is(':focus')) {
             event.preventDefault();
 
-            let $option = $(`.${this._options.block}__option:focus`);
+            const $option = this._$options.add(this._$value).filter(':focus');
             $option.trigger('click');
 
             if (!$option.is(this._$value)) {
@@ -379,17 +387,16 @@ const CustomSelect = (($) => {
 
     static _jQueryPlugin(options) {
       return this.each(function () {
-        let _options = $.extend({}, defaults);
-        let $this = $(this);
+        const $this = $(this);
         let data = $this.data('custom-select');
-
-        if (typeof options === 'object') {
-          $.extend(_options, options);
-        }
+        const _options = {
+          ...defaults,
+          ...typeof options === 'object' && options
+        };
 
         if (!data) {
           data = new CustomSelect(this, _options);
-          $(this).data('custom-select', data);
+          $this.data('custom-select', data);
         }
       });
     }
