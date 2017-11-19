@@ -65,7 +65,7 @@ const CustomSelect = (($) => {
     _init() {
       this._$element = $(
         `<div class="${this._options.block}">
-           <button class="${this._options.block}__option ${this._options.block}__option--value"></button>
+           <button class="${this._options.block}__option ${this._options.block}__option--value" type="button"></button>
            <div class="${this._options.block}__dropdown" style="display: none;"></div>
          </div>`
       );
@@ -105,7 +105,9 @@ const CustomSelect = (($) => {
       // Render options
       $.each(this._values, (i, el) => {
         const cssClass = this._$values.eq(i).attr('class');
-        const $option = $(`<button class="${this._options.block}__option">${el}</button>`);
+        const $option = $(
+          `<button class="${this._options.block}__option" type="button">${el}</button>`
+        );
 
         if (el === this._$select.find(':selected').text().trim()) {
           this._$value
