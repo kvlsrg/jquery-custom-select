@@ -40,14 +40,14 @@ var CustomSelect = function ($) {
      */
     function CustomSelect(select, options) {
       this._$select = $(select);
-      this._options = options; // Event handlers that can be removed
+      this._options = options; // Modifiers
+
+      this._activeModifier = this._options.block + "--active";
+      this._dropupModifier = this._options.block + "--dropup"; // Event handlers that can be removed
 
       this._keydown = this._keydown.bind(this);
       this._dropup = this._dropup.bind(this);
-      this._outside = this._outside.bind(this); // Modifiers
-
-      this._activeModifier = this._options.block + "--active";
-      this._dropupModifier = this._options.block + "--dropup"; // TODO: Remove in v1.4.0
+      this._outside = this._outside.bind(this); // TODO: Remove in v1.4.0
 
       if (this._options.autocomplete) {
         this._options.search = true;
@@ -165,11 +165,7 @@ var CustomSelect = function ($) {
       if (this._options.keyboard) {
         this._options.index = -1;
         $(window).on('keydown', this._keydown);
-      } // Modifiers
-
-
-      this._activeModifier = this._options.block + "--active";
-      this._dropupModifier = this._options.block + "--dropup";
+      }
     };
 
     _proto._hide = function _hide() {

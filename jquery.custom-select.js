@@ -44,14 +44,14 @@ const CustomSelect = (($) => {
       this._$select = $(select);
       this._options = options;
 
+      // Modifiers
+      this._activeModifier = `${this._options.block}--active`;
+      this._dropupModifier = `${this._options.block}--dropup`;
+
       // Event handlers that can be removed
       this._keydown = this._keydown.bind(this);
       this._dropup = this._dropup.bind(this);
       this._outside = this._outside.bind(this);
-
-      // Modifiers
-      this._activeModifier = `${this._options.block}--active`;
-      this._dropupModifier = `${this._options.block}--dropup`;
 
       // TODO: Remove in v1.4.0
       if (this._options.autocomplete) {
@@ -173,10 +173,6 @@ const CustomSelect = (($) => {
         this._options.index = -1;
         $(window).on('keydown', this._keydown);
       }
-
-      // Modifiers
-      this._activeModifier = `${this._options.block}--active`;
-      this._dropupModifier = `${this._options.block}--dropup`;
     }
 
     _hide() {
