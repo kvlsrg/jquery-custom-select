@@ -3,6 +3,8 @@ Custom Select jQuery Plugin
 
 [![npm version](https://img.shields.io/npm/v/jquery-custom-select.svg)](https://npmjs.com/package/jquery-custom-select)
 
+Simple plugin creates custom select instead of default `<select>`.
+
 ### Usage
 
 ```js
@@ -31,11 +33,11 @@ Selectors naming of custom select based on BEM. Here is HTML structure of block 
 
 ```html
 <div class="custom-select custom-select--active">
-  <button class="custom-select__option custom-select__option--value">...</button>
+  <button class="custom-select__option custom-select__option--value" type="button">...</button>
   <div class="custom-select__dropdown">
-    <button class="custom-select__option">...</button>
-    <button class="custom-select__option">...</button>
-    <button class="custom-select__option">...</button>
+    <button class="custom-select__option" type="button">...</button>
+    <button class="custom-select__option" type="button">...</button>
+    <button class="custom-select__option" type="button">...</button>
   </div>
 </div>
 ```
