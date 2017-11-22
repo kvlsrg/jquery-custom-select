@@ -4,15 +4,17 @@ title: Custom Select jQuery Plugin
 
 ## Options
 
-#### Custom select inited with default options
+### Custom select inited with default options
+
+By default, all the classes of `<option>` elements are copied.
 
 <div markdown="0">
   <select class="select select--default">
-    <option value="0">All</option>
+    <option value="1">First Item</option>
     <option value="2">Second Item</option>
-    <option value="3">Third Item</option>
+    <option class="bold" value="3">Third Item</option>
     <option value="4">Fourth Item</option>
-    <option value="5">Fifth Very Very Long Item</option>
+    <option class="bold" value="5">Fifth Very Very Long Item</option>
   </select>
   <script>
     $('.select--default').customSelect();
@@ -22,11 +24,37 @@ title: Custom Select jQuery Plugin
 ```js
 $('select').customSelect();
 ```
-#### Placeholder hint
+
+### Other class name (BEM block name)
+
+Note, this example have same style in demo, but classes of all custom select elements are different.
+
+<div markdown="0">
+  <select class="select select--block">
+    <option value="1">First Item</option>
+    <option value="2">Second Item</option>
+    <option value="3">Third Item</option>
+    <option value="4">Fourth Item</option>
+    <option value="5">Fifth Very Very Long Item</option>
+  </select>
+  <script>
+    $('.select--block').customSelect({
+      block: 'my-custom-select'
+    });
+  </script>
+</div>
+
+```js
+$('select').customSelect({
+  block: 'my-custom-select'
+});
+```
+
+### Placeholder hint
 
 <div markdown="0">
   <select class="select select--placeholder">
-    <option value="0">All</option>
+    <option value="1">First Item</option>
     <option value="2">Second Item</option>
     <option value="3">Third Item</option>
     <option value="4">Fourth Item</option>
@@ -45,11 +73,11 @@ $('select').customSelect({
 });
 ```
 
-#### Block modifier (additional CSS class)
+### Block modifier (additional CSS class)
 
 <div markdown="0">
   <select class="select select--modifier">
-    <option value="0">All</option>
+    <option value="1">First Item</option>
     <option value="2">Second Item</option>
     <option value="3">Third Item</option>
     <option value="4">Fourth Item</option>
@@ -68,13 +96,13 @@ $('select').customSelect({
 });
 ```
 
-#### Included in dropdown current value
+### Included in dropdown current value
 
 Dropdown always includes all options of original select, current value don't removes.
 
 <div markdown="0">
   <select class="select select--include-value">
-    <option value="0">All</option>
+    <option value="1">First Item</option>
     <option value="2">Second Item</option>
     <option value="3">Third Item</option>
     <option value="4">Fourth Item</option>
