@@ -124,18 +124,23 @@ const CustomSelect = (($) => {
         }
       });
 
-      this._$value.one('click', (event) => {
-        this._show(event);
-      });
-
       this._$options = this._$dropdown.find(`.${this._options.block}__option`);
-      this._$options.on('click', (event) => {
-        this._select(event);
-      });
 
       if (this._options.search) {
         this._search();
       }
+
+      this._$value.one('click', (event) => {
+        this._show(event);
+      });
+
+      if (!this._$options.length) {
+        this._$value.prop('disabled', true);
+      }
+
+      this._$options.on('click', (event) => {
+        this._select(event);
+      });
     }
 
     _show(event) {
@@ -244,8 +249,13 @@ const CustomSelect = (($) => {
       if (!this._options.includeValue) {
         if (this._$options.length > values.length) {
           const last = this._$options.eq(values.length);
+
           last.remove();
           this._$options = this._$options.not(last);
+
+          if (!this._$options.length) {
+            this._$value.prop('disabled', true);
+          }
         }
 
         $.each(this._$options, (i, option) => {
