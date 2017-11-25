@@ -113,20 +113,23 @@ var CustomSelect = function ($) {
           _this._$dropdown.append($option);
         }
       });
+      this._$options = this._$dropdown.find("." + this._options.block + "__option");
+
+      if (this._options.search) {
+        this._search();
+      }
 
       this._$value.one('click', function (event) {
         _this._show(event);
       });
 
-      this._$options = this._$dropdown.find("." + this._options.block + "__option");
+      if (!this._$options.length) {
+        this._$value.prop('disabled', true);
+      }
 
       this._$options.on('click', function (event) {
         _this._select(event);
       });
-
-      if (this._options.search) {
-        this._search();
-      }
     };
 
     _proto._show = function _show(event) {
@@ -240,6 +243,10 @@ var CustomSelect = function ($) {
 
           last.remove();
           this._$options = this._$options.not(last);
+
+          if (!this._$options.length) {
+            this._$value.prop('disabled', true);
+          }
         }
 
         $.each(this._$options, function (i, option) {
