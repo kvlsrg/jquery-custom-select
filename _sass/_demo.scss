@@ -21,7 +21,7 @@ $themes: (
 );
 
 // As mixin because of `block` option example
-@mixin demo($block: $custom-select-class) {
+@mixin demo($block: "custom-select") {
   .#{$block} {
     $gutter: 0.75rem;
   

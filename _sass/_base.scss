@@ -2,10 +2,9 @@
  * Custom Select jQuery Plugin Base
  */
 
-$custom-select-class: "custom-select";
 $white: #fff !default;
 
-@mixin custom-select($block) {
+@mixin custom-select($block: "custom-select") {
   .#{$block} {
     position: relative;
     background-color: $white;
@@ -55,4 +54,4 @@ $white: #fff !default;
   }
 }
 
-@include custom-select($custom-select-class);
+@include custom-select;
