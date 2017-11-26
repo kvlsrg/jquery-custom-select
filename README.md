@@ -11,6 +11,21 @@ Simple plugin creates custom select instead of default `<select>`.
 $('select').customSelect();
 ```
 
+Selectors naming of custom select based on BEM. Here is HTML structure of block (open dropdown state):
+
+```html
+<div class="custom-select custom-select--active">
+  <button class="custom-select__option custom-select__option--value" type="button">...</button>
+  <div class="custom-select__dropdown">
+    <button class="custom-select__option" type="button">...</button>
+    <button class="custom-select__option" type="button">...</button>
+    <button class="custom-select__option" type="button">...</button>
+  </div>
+</div>
+```
+
+Note, plugin does not contain any additional CSS except of base, which includes only dropdown positioning, reset of options & input.
+
 ### Options
 
 Name | Type | Default | Description
@@ -24,23 +39,6 @@ Name | Type | Default | Description
 `search` | boolean | `false` | Adds input to search options
 `showCallback` | Function | `false` | Fires after dropdown opens
 `transition` | number &#124;&#124; string | `100` | jQuery slideUp/Down speed
-
-### Style
-
-Note, plugin does not contain any additional CSS except of base, which includes only dropdown positioning, reset of options & input. 
-
-Selectors naming of custom select based on BEM. Here is HTML structure of block (open dropdown state):
-
-```html
-<div class="custom-select custom-select--active">
-  <button class="custom-select__option custom-select__option--value" type="button">...</button>
-  <div class="custom-select__dropdown">
-    <button class="custom-select__option" type="button">...</button>
-    <button class="custom-select__option" type="button">...</button>
-    <button class="custom-select__option" type="button">...</button>
-  </div>
-</div>
-```
 
 ### Demo
 
