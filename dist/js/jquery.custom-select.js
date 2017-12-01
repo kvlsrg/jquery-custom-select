@@ -56,6 +56,13 @@ var CustomSelect = function ($) {
 
       this._init();
     }
+    /**
+     * Renders initial state of custom select & sets
+     * options click event listeners
+     *
+     * @private
+     */
+
 
     var _proto = CustomSelect.prototype;
 
@@ -131,6 +138,14 @@ var CustomSelect = function ($) {
         _this._select(event);
       });
     };
+    /**
+     * Shows custom select dropdown & sets outside
+     * click listener to hide
+     *
+     * @param {Object} event - Value click jQuery event
+     * @private
+     */
+
 
     _proto._show = function _show(event) {
       var _this2 = this;
@@ -170,6 +185,13 @@ var CustomSelect = function ($) {
         $(window).on('keydown', this._keydown);
       }
     };
+    /**
+     * Hides custom select dropdown & resets events
+     * listeners to initial
+     *
+     * @private
+     */
+
 
     _proto._hide = function _hide() {
       var _this3 = this;
@@ -204,6 +226,14 @@ var CustomSelect = function ($) {
         this._$wrap.scrollTop(0);
       }
     };
+    /**
+     * Changes value of custom select & `<select>`
+     * by chosen option
+     *
+     * @param {Object} event - Option click jQuery event
+     * @private
+     */
+
 
     _proto._select = function _select(event) {
       var _this4 = this;
@@ -211,7 +241,7 @@ var CustomSelect = function ($) {
       event.preventDefault();
       var choice = $(event.currentTarget).text().trim();
 
-      var values = this._values.slice();
+      var values = this._values.concat();
 
       this._$value.text(choice).removeClass(this._$value.data('class'));
 
@@ -268,6 +298,13 @@ var CustomSelect = function ($) {
         this._$select.trigger('change');
       }
     };
+    /**
+     * Wraps options by wrap element, adds input to
+     * dropdown & implements options search
+     *
+     * @private
+     */
+
 
     _proto._search = function _search() {
       var _this5 = this;
@@ -306,6 +343,13 @@ var CustomSelect = function ($) {
         }
       });
     };
+    /**
+     * Toggles custom select dropup modifier based
+     * on space for dropdown below
+     *
+     * @private
+     */
+
 
     _proto._dropup = function _dropup() {
       var bottom = this._$element[0].getBoundingClientRect().bottom;
@@ -314,6 +358,14 @@ var CustomSelect = function ($) {
 
       this._$element.toggleClass(this._dropupModifier, up);
     };
+    /**
+    * Hides dropdown if target of event (e.g. click
+    * on `$window`) is not custom select
+    *
+    * @param {Object} event - Outside "click" jQuery event
+    * @private
+    */
+
 
     _proto._outside = function _outside(event) {
       var $target = $(event.target);
@@ -322,6 +374,14 @@ var CustomSelect = function ($) {
         this._hide();
       }
     };
+    /**
+     * Controls navigation from keyboard by custom
+     * select options
+     *
+     * @param {Object} event - Keydown jQuery event
+     * @private
+     */
+
 
     _proto._keydown = function _keydown(event) {
       var $visible = this._$options.filter(':visible');
@@ -389,6 +449,14 @@ var CustomSelect = function ($) {
           break;
       }
     };
+    /**
+     * Creates jQuery plugin function
+     *
+     * @param {Object} [options] - Settings object
+     * @returns {Function} - jQuery plugin
+     * @private
+     */
+
 
     CustomSelect._jQueryPlugin = function _jQueryPlugin(options) {
       return this.each(function () {
