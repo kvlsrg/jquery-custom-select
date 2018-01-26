@@ -2,9 +2,7 @@
 title: Custom Select jQuery Plugin
 ---
 
-## Options
-
-### Custom select inited with default options
+## Default
 
 By default, all the classes of `<option>` elements are copied.
 
@@ -25,124 +23,128 @@ By default, all the classes of `<option>` elements are copied.
 $('select').customSelect();
 ```
 
-### Other class name (BEM block name)
+## Options
 
-Note, this example have same style in demo, but classes of all custom select elements are different.
+* #### `block` (default: `'custom-select'`) - Other class name (BEM block name)
 
-<div markdown="0">
-  <select class="select select--block">
-    <option value="1">First Item</option>
-    <option value="2">Second Item</option>
-    <option value="3">Third Item</option>
-    <option value="4">Fourth Item</option>
-    <option value="5">Fifth Very Very Long Item</option>
-  </select>
-  <script>
-    $('.select--block').customSelect({
+    Note, this example have same style in demo, but classes of all custom select elements are different.
+
+    <div markdown="0">
+      <select class="select select--block">
+        <option value="1">First Item</option>
+        <option value="2">Second Item</option>
+        <option value="3">Third Item</option>
+        <option value="4">Fourth Item</option>
+        <option value="5">Fifth Very Very Long Item</option>
+      </select>
+      <script>
+        $('.select--block').customSelect({
+          block: 'my-custom-select'
+        });
+      </script>
+    </div>
+
+    ```js
+    $('select').customSelect({
       block: 'my-custom-select'
     });
-  </script>
-</div>
+    ```
 
-```js
-$('select').customSelect({
-  block: 'my-custom-select'
-});
-```
+* #### `includeValue` (default: `false`) - Included in dropdown current value
 
-### Included in dropdown current value
+    Dropdown always includes all options of original select, current value don't removes.
 
-Dropdown always includes all options of original select, current value don't removes.
+    <div markdown="0">
+      <select class="select select--include-value">
+        <option value="1">First Item</option>
+        <option value="2">Second Item</option>
+        <option value="3">Third Item</option>
+        <option value="4">Fourth Item</option>
+        <option value="5">Fifth Very Very Long Item</option>
+      </select>
+      <script>
+        $('.select--include-value').customSelect({
+          includeValue: true
+        });
+      </script>
+    </div>
 
-<div markdown="0">
-  <select class="select select--include-value">
-    <option value="1">First Item</option>
-    <option value="2">Second Item</option>
-    <option value="3">Third Item</option>
-    <option value="4">Fourth Item</option>
-    <option value="5">Fifth Very Very Long Item</option>
-  </select>
-  <script>
-    $('.select--include-value').customSelect({
+    ```js
+    $('select').customSelect({
       includeValue: true
     });
-  </script>
-</div>
+    ```
 
-```js
-$('select').customSelect({
-  includeValue: true
-});
-```
+* #### `modifier` (default: `false`) - Block modifier (additional CSS class)
 
-### Block modifier (additional CSS class)
+    <div markdown="0">
+      <select class="select select--modifier">
+        <option value="1">First Item</option>
+        <option value="2">Second Item</option>
+        <option value="3">Third Item</option>
+        <option value="4">Fourth Item</option>
+        <option value="5">Fifth Very Very Long Item</option>
+      </select>
+      <script>
+        $('.select--modifier').customSelect({
+          modifier: 'custom-select--dark'
+        });
+      </script>
+    </div>
 
-<div markdown="0">
-  <select class="select select--modifier">
-    <option value="1">First Item</option>
-    <option value="2">Second Item</option>
-    <option value="3">Third Item</option>
-    <option value="4">Fourth Item</option>
-    <option value="5">Fifth Very Very Long Item</option>
-  </select>
-  <script>
-    $('.select--modifier').customSelect({
+    ```js
+    $('select').customSelect({
       modifier: 'custom-select--dark'
     });
-  </script>
-</div>
+    ```
 
-```js
-$('select').customSelect({
-  modifier: 'custom-select--dark'
-});
-```
+* #### `placeholder` (default: `false`) - Placeholder hint
 
-### Placeholder hint
+    <div markdown="0">
+      <select class="select select--placeholder">
+        <option value="1">First Item</option>
+        <option value="2">Second Item</option>
+        <option value="3">Third Item</option>
+        <option value="4">Fourth Item</option>
+        <option value="5">Fifth Very Very Long Item</option>
+      </select>
+      <script>
+        $('.select--placeholder').customSelect({
+          placeholder: '<span style="color: gray;">Please Select</span>'
+        });
+      </script>
+    </div>
 
-<div markdown="0">
-  <select class="select select--placeholder">
-    <option value="1">First Item</option>
-    <option value="2">Second Item</option>
-    <option value="3">Third Item</option>
-    <option value="4">Fourth Item</option>
-    <option value="5">Fifth Very Very Long Item</option>
-  </select>
-  <script>
-    $('.select--placeholder').customSelect({
+    ```js
+    $('select').customSelect({
       placeholder: '<span style="color: gray;">Please Select</span>'
     });
-  </script>
-</div>
+    ```
 
-```js
-$('select').customSelect({
-  placeholder: '<span style="color: gray;">Please Select</span>'
-});
-```
+* #### `search` (default: `false`) - Options search
 
-### Options Search
+    Search input appears in dropdown to filter options.
 
-<div markdown="0">
-  <select class="select select--search">
-    <option value="1">First Item</option>
-    <option value="2">Second Item</option>
-    <option value="3">Third Item</option>
-    <option value="4">Fourth Item</option>
-    <option value="5">Fifth Very Very Long Item</option>
-  </select>
-  <script>
-    $('.select--search').customSelect({
+    <div markdown="0">
+      <select class="select select--search">
+        <option value="1">First Item</option>
+        <option value="2">Second Item</option>
+        <option value="3">Third Item</option>
+        <option value="4">Fourth Item</option>
+        <option value="5">Fifth Very Very Long Item</option>
+      </select>
+      <script>
+        $('.select--search').customSelect({
+          search: true
+        });
+      </script>
+    </div>
+
+    ```js
+    $('select').customSelect({
       search: true
     });
-  </script>
-</div>
-
-```js
-$('select').customSelect({
-  search: true
-});
-```
+    ```
 
 <script markdown="0">
   $('.select').on('change', function () {
