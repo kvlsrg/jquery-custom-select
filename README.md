@@ -5,6 +5,10 @@ Custom Select jQuery Plugin
 
 Simple plugin creates custom select instead of default `<select>`.
 
+### Demo
+
+You can view demo [here](https://kvlsrg.github.io/jquery-custom-select/).
+
 ### Usage
 
 ```js
@@ -31,10 +35,6 @@ sass
 ├── _base.scss // Only dropdown positioning, reset of options & input
 └── jquery.custom-select.scss // Base & default theme
 ```
-
-### Demo
-
-You can view demo [here](https://kvlsrg.github.io/jquery-custom-select/).
 
 ### Options
 
