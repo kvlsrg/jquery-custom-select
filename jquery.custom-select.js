@@ -15,10 +15,7 @@ const CustomSelect = (($) => {
     placeholder: false,
     search: false,
     showCallback: false,
-    transition: 100,
-
-    // TODO: Remove deprecated in v1.4.0
-    autocomplete: false
+    transition: 100
   };
 
   class CustomSelect {
@@ -52,12 +49,6 @@ const CustomSelect = (($) => {
       this._keydown = this._keydown.bind(this);
       this._dropup = this._dropup.bind(this);
       this._outside = this._outside.bind(this);
-
-      // TODO: Remove in v1.4.0
-      if (this._options.autocomplete) {
-        this._options.search = true;
-        console.warn('Option `autocomplete` is deprecated since v1.3.0! Please, use `search` instead.');
-      }
 
       this._init();
     }
