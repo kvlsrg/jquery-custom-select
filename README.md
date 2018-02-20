@@ -24,7 +24,17 @@ Selectors naming of custom select based on BEM. Here is HTML structure of block 
 </div>
 ```
 
-Note, plugin does not contain any additional CSS except of base, which includes only dropdown positioning, reset of options & input.
+Note, plugin contain default theme. It's divided into two SCSS files:
+
+```
+sass
+├── _base.scss // Only dropdown positioning, reset of options & input
+└── jquery.custom-select.scss // Base & default theme
+```
+
+### Demo
+
+You can view demo [here](https://kvlsrg.github.io/jquery-custom-select/).
 
 ### Options
 
@@ -39,7 +49,3 @@ Name | Type | Default | Description
 `search` | boolean | `false` | Adds input to search options
 `showCallback` | Function | `false` | Fires after dropdown opens
 `transition` | number &#124;&#124; string | `100` | jQuery slideUp/Down speed
-
-### Demo
-
-You can view demo [here](https://kvlsrg.github.io/jquery-custom-select/).
