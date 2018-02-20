@@ -28,10 +28,10 @@
     "type": "git",
     "url": "git+https://github.com/kvlsrg/jquery-custom-select.git"
   },
-  "sass": "jquery.custom-select.scss",
+  "sass": "sass/jquery.custom-select.scss",
   "scripts": {
     "js": "babel jquery.custom-select.js --out-dir dist/js --source-maps && uglifyjs dist/js/jquery.custom-select.js --compress --source-map \"content=dist/js/jquery.custom-select.js.map,includeSources,url=jquery.custom-select.min.js.map\" --output dist/js/jquery.custom-select.min.js",
-    "sass": "node-sass --output-style expanded --source-map true --source-map-contents true jquery.custom-select.scss dist/css/jquery.custom-select.css && node-sass --output-style compressed --source-map true --source-map-contents true jquery.custom-select.scss dist/css/jquery.custom-select.min.css"
+    "sass": "node-sass --output-style expanded --source-map true --source-map-contents true sass/jquery.custom-select.scss dist/css/jquery.custom-select.css && node-sass --output-style compressed --source-map true --source-map-contents true sass/jquery.custom-select.scss dist/css/jquery.custom-select.min.css"
   },
   "style": "dist/css/jquery.custom-select.css"
 }
