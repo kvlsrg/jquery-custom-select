@@ -29,12 +29,12 @@ Selectors naming of custom select based on BEM & it's easy to create different s
 
 Name | Type | Default | Description
 ---- | ---- | ------- | -----------
-`block` | string | `'custom-select'` | Class name (BEM block name)
+`block` | string | `'custom-select'` | Custom select BEM block name
 `hideCallback` | Function | `false` | Fires after dropdown closes
-`includeValue` | boolean | `false` | Shows chosen value option in dropdown, if enabled also cancels dropdown options rerender
+`includeValue` | boolean | `false` | Adds chosen value option to dropdown. If enabled also cancels dropdown options rerender.
 `keyboard` | boolean | `true` | Enables keyboard control
-`modifier` | string | `false` | Additional class (BEM modifier)
-`placeholder` | string | `false` | Custom select placeholder hint, can be an HTML string (appears if there is no explicitly selected options)
-`search` | boolean | `false` | Adds input to search options
+`modifier` | string | `false` | Custom select block BEM modifier
+`placeholder` | string | `false` | Placeholder hint, can be an HTML string (appears only if there is no explicitly selected options)
+`search` | boolean | `false` | Adds input to filter options
 `showCallback` | Function | `false` | Fires after dropdown opens
-`transition` | number &#124; string | `0` | jQuery slideUp/Down speed
+`transition` | number &#124; string | `0` | jQuery slideUp/Down param
