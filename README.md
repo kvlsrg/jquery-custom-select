@@ -48,4 +48,4 @@ Name | Type | Default | Description
 `placeholder` | string | `false` | Custom select placeholder hint, can be an HTML string (appears if there is no explicitly selected options)
 `search` | boolean | `false` | Adds input to search options
 `showCallback` | Function | `false` | Fires after dropdown opens
-`transition` | number &#124;&#124; string | `100` | jQuery slideUp/Down speed
+`transition` | number &#124;&#124; string | `0` | jQuery slideUp/Down speed
