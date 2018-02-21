@@ -15,7 +15,7 @@ const CustomSelect = (($) => {
     placeholder: false,
     search: false,
     showCallback: false,
-    transition: 100
+    transition: 0
   };
 
   class CustomSelect {
@@ -35,7 +35,7 @@ const CustomSelect = (($) => {
      * can be an HTML string (appears if there is no explicitly selected options)
      * @param {boolean} [options.search=false] - Adds input to search options
      * @param {Function} [options.showCallback=false] - Fires after dropdown opens
-     * @param {number || string} [options.transition=100] - jQuery slideUp/Down speed
+     * @param {number || string} [options.transition=0] - jQuery slideUp/Down speed
      */
     constructor(select, options) {
       this._$select = $(select);

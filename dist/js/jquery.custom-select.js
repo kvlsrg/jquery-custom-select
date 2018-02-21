@@ -13,7 +13,7 @@ var CustomSelect = function ($) {
     placeholder: false,
     search: false,
     showCallback: false,
-    transition: 100
+    transition: 0
   };
 
   var CustomSelect =
@@ -34,7 +34,7 @@ var CustomSelect = function ($) {
      * can be an HTML string (appears if there is no explicitly selected options)
      * @param {boolean} [options.search=false] - Adds input to search options
      * @param {Function} [options.showCallback=false] - Fires after dropdown opens
-     * @param {number || string} [options.transition=100] - jQuery slideUp/Down speed
+     * @param {number || string} [options.transition=0] - jQuery slideUp/Down speed
      */
     function CustomSelect(select, options) {
       this._$select = $(select);
