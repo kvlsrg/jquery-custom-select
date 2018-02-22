@@ -39,7 +39,10 @@ const CustomSelect = (($) => {
      */
     constructor(select, options) {
       this._$select = $(select);
-      this._options = options;
+      this._options = {
+        ...defaults,
+        ...typeof options === 'object' && options
+      };
 
       // Modifiers
       this._activeModifier = `${this._options.block}--active`;
@@ -443,13 +446,9 @@ const CustomSelect = (($) => {
       return this.each(function () {
         const $this = $(this);
         let data = $this.data('custom-select');
-        const _options = {
-          ...defaults,
-          ...typeof options === 'object' && options
-        };
 
         if (!data) {
-          data = new CustomSelect(this, _options);
+          data = new CustomSelect(this, options);
           $this.data('custom-select', data);
         }
       });
@@ -458,6 +457,8 @@ const CustomSelect = (($) => {
 
   $.fn['customSelect'] = CustomSelect._jQueryPlugin;
   $.fn['customSelect'].noConflict = () => $.fn['customSelect'];
+
+  return CustomSelect;
 
 })($);
 
