@@ -38,7 +38,7 @@ var CustomSelect = function ($) {
      */
     function CustomSelect(select, options) {
       this._$select = $(select);
-      this._options = options; // Modifiers
+      this._options = _extends({}, defaults, typeof options === 'object' && options); // Modifiers
 
       this._activeModifier = this._options.block + "--active";
       this._dropupModifier = this._options.block + "--dropup"; // Event handlers that can be removed
@@ -455,10 +455,8 @@ var CustomSelect = function ($) {
         var $this = $(this);
         var data = $this.data('custom-select');
 
-        var _options = _extends({}, defaults, typeof options === 'object' && options);
-
         if (!data) {
-          data = new CustomSelect(this, _options);
+          data = new CustomSelect(this, options);
           $this.data('custom-select', data);
         }
       });
@@ -472,5 +470,7 @@ var CustomSelect = function ($) {
   $.fn['customSelect'].noConflict = function () {
     return $.fn['customSelect'];
   };
+
+  return CustomSelect;
 }($);
 //# sourceMappingURL=jquery.custom-select.js.map
