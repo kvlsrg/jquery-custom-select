@@ -116,6 +116,7 @@
   padding: 0 0.75rem;
   border-width: 1px 0;
   transform: translateY(1px);
+  font-family: inherit;
   font-size: inherit;
   border-color: #e6e6e6;
 }
