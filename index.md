@@ -6,7 +6,7 @@ title: Custom Select jQuery Plugin
 
 By default, all the classes of `<option>` elements are copied.
 
-<div markdown="0">
+<p markdown="0">
   <select class="select select--default">
     <option value="1">First Item</option>
     <option value="2">Second Item</option>
@@ -17,7 +17,7 @@ By default, all the classes of `<option>` elements are copied.
   <script>
     $('.select--default').customSelect();
   </script>
-</div>
+</p>
 
 ```js
 $('select').customSelect();
@@ -29,7 +29,7 @@ $('select').customSelect();
 
     Note, this example have same style in demo, but classes of all custom select elements are different.
 
-    <div markdown="0">
+    <p markdown="0">
       <select class="select select--block">
         <option value="1">First Item</option>
         <option value="2">Second Item</option>
@@ -42,7 +42,7 @@ $('select').customSelect();
           block: 'my-custom-select'
         });
       </script>
-    </div>
+    </p>
 
     ```js
     $('select').customSelect({
@@ -54,7 +54,7 @@ $('select').customSelect();
 
     Dropdown always includes all options of original select, current value don't removes.
 
-    <div markdown="0">
+    <p markdown="0">
       <select class="select select--include-value">
         <option value="1">First Item</option>
         <option value="2">Second Item</option>
@@ -67,7 +67,7 @@ $('select').customSelect();
           includeValue: true
         });
       </script>
-    </div>
+    </p>
 
     ```js
     $('select').customSelect({
@@ -77,7 +77,7 @@ $('select').customSelect();
 
 * #### `modifier` (default: `false`) - Block modifier (additional CSS class)
 
-    <div markdown="0">
+    <p markdown="0">
       <select class="select select--modifier">
         <option value="1">First Item</option>
         <option value="2">Second Item</option>
@@ -90,7 +90,7 @@ $('select').customSelect();
           modifier: 'custom-select--dark'
         });
       </script>
-    </div>
+    </p>
 
     ```js
     $('select').customSelect({
@@ -100,7 +100,7 @@ $('select').customSelect();
 
 * #### `placeholder` (default: `false`) - Placeholder hint
 
-    <div markdown="0">
+    <p markdown="0">
       <select class="select select--placeholder">
         <option value="1">First Item</option>
         <option value="2">Second Item</option>
@@ -113,7 +113,7 @@ $('select').customSelect();
           placeholder: '<span style="color: gray;">Please Select</span>'
         });
       </script>
-    </div>
+    </p>
 
     ```js
     $('select').customSelect({
@@ -125,7 +125,7 @@ $('select').customSelect();
 
     Search input appears in dropdown to filter options.
 
-    <div markdown="0">
+    <p markdown="0">
       <select class="select select--search">
         <option value="1">First Item</option>
         <option value="2">Second Item</option>
@@ -138,7 +138,7 @@ $('select').customSelect();
           search: true
         });
       </script>
-    </div>
+    </p>
 
     ```js
     $('select').customSelect({
