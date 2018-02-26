@@ -13,9 +13,7 @@ var CustomSelect = function ($) {
     placeholder: false,
     search: false,
     showCallback: false,
-    transition: 100,
-    // TODO: Remove deprecated in v1.4.0
-    autocomplete: false
+    transition: 0
   };
 
   var CustomSelect =
@@ -24,41 +22,36 @@ var CustomSelect = function ($) {
     /**
      * Custom Select
      *
-     * @param {Object} select - `<select>` DOM element
-     * @param {Object} [options] - Settings object
-     * @param {string} [options.block=custom-select] - Class name (BEM block name)
-     * @param {Function} [options.hideCallback=false] - Fires after dropdown closes
-     * @param {boolean} [options.includeValue=false] - Shows chosen value option in
-     * dropdown, if enabled also cancels dropdown options rerender
-     * @param {boolean} [options.keyboard=true] - Enables keyboard control
-     * @param {string} [options.modifier=false] - Additional class, e.g. BEM modifier
-     * @param {string} [options.placeholder=false] - Custom select placeholder hint,
-     * can be an HTML string (appears if there is no explicitly selected options)
-     * @param {boolean} [options.search=false] - Adds input to search options
-     * @param {Function} [options.showCallback=false] - Fires after dropdown opens
-     * @param {number || string} [options.transition=100] - jQuery slideUp/Down speed
+     * @param {Element} select Original `<select>` DOM element to customize.
+     * @param {Object=} options Settings plain object to overwrite defaults.
+     * @param {string=} options.block Custom select BEM block name.
+     * @param {Function=} options.hideCallback Fires after dropdown closes.
+     * @param {boolean=} options.includeValue Adds chosen value option to
+     *     dropdown. If enabled also cancels dropdown options rerender.
+     * @param {boolean=} options.keyboard Enables keyboard control.
+     * @param {string=} options.modifier Custom select block BEM modifier.
+     * @param {string=} options.placeholder Placeholder hint, can be an HTML
+     *     string (appears only if there is no explicitly selected options).
+     * @param {boolean=} options.search Adds input to filter options.
+     * @param {Function=} options.showCallback Fires after dropdown opens.
+     * @param {(number|string)=} options.transition jQuery slideUp/Down param.
      */
     function CustomSelect(select, options) {
       this._$select = $(select);
-      this._options = options; // Modifiers
+      this._options = _extends({}, defaults, typeof options === 'object' && options); // Modifiers
 
       this._activeModifier = this._options.block + "--active";
       this._dropupModifier = this._options.block + "--dropup"; // Event handlers that can be removed
 
       this._keydown = this._keydown.bind(this);
       this._dropup = this._dropup.bind(this);
-      this._outside = this._outside.bind(this); // TODO: Remove in v1.4.0
-
-      if (this._options.autocomplete) {
-        this._options.search = true;
-        console.warn('Option `autocomplete` is deprecated since v1.3.0! Please, use `search` instead.');
-      }
+      this._outside = this._outside.bind(this);
 
       this._init();
     }
     /**
      * Renders initial state of custom select & sets
-     * options click event listeners
+     * options click event listeners.
      *
      * @private
      */
@@ -75,8 +68,7 @@ var CustomSelect = function ($) {
 
       if (this._options.modifier) {
         this._$element.addClass(this._options.modifier);
-      } // Create values array
-
+      }
 
       this._$values = this._$select.find('option');
       this._values = [];
@@ -88,7 +80,7 @@ var CustomSelect = function ($) {
       this._$value = this._$element.find("." + this._options.block + "__option--value");
 
       if (this._options.placeholder) {
-        // Disable placeholder if there is explicitly selected option
+        // Check explicitly selected option
         if (this._$select.find('[selected]').length) {
           this._options.placeholder = false;
         } else {
@@ -140,9 +132,9 @@ var CustomSelect = function ($) {
     };
     /**
      * Shows custom select dropdown & sets outside
-     * click listener to hide
+     * click listener to hide.
      *
-     * @param {Object} event - Value click jQuery event
+     * @param {Object} event Value click jQuery event.
      * @private
      */
 
@@ -150,7 +142,7 @@ var CustomSelect = function ($) {
     _proto._show = function _show(event) {
       var _this2 = this;
 
-      event.preventDefault(); // Set dropdown position modifier
+      event.preventDefault();
 
       this._dropup();
 
@@ -187,7 +179,7 @@ var CustomSelect = function ($) {
     };
     /**
      * Hides custom select dropdown & resets events
-     * listeners to initial
+     * listeners to initial.
      *
      * @private
      */
@@ -228,9 +220,9 @@ var CustomSelect = function ($) {
     };
     /**
      * Changes value of custom select & `<select>`
-     * by chosen option
+     * by chosen option.
      *
-     * @param {Object} event - Option click jQuery event
+     * @param {Object} event Option click jQuery event.
      * @private
      */
 
@@ -300,7 +292,7 @@ var CustomSelect = function ($) {
     };
     /**
      * Wraps options by wrap element, adds input to
-     * dropdown & implements options search
+     * dropdown & implements options search.
      *
      * @private
      */
@@ -345,7 +337,7 @@ var CustomSelect = function ($) {
     };
     /**
      * Toggles custom select dropup modifier based
-     * on space for dropdown below
+     * on space for dropdown below.
      *
      * @private
      */
@@ -360,9 +352,9 @@ var CustomSelect = function ($) {
     };
     /**
     * Hides dropdown if target of event (e.g. click
-    * on `$window`) is not custom select
+    * on `$window`) is not custom select.
     *
-    * @param {Object} event - Outside "click" jQuery event
+    * @param {Object} event Outside "click" jQuery event.
     * @private
     */
 
@@ -376,9 +368,9 @@ var CustomSelect = function ($) {
     };
     /**
      * Controls navigation from keyboard by custom
-     * select options
+     * select options.
      *
-     * @param {Object} event - Keydown jQuery event
+     * @param {Object} event Keydown jQuery event.
      * @private
      */
 
@@ -450,10 +442,10 @@ var CustomSelect = function ($) {
       }
     };
     /**
-     * Creates jQuery plugin function
+     * Creates jQuery plugin function.
      *
-     * @param {Object} [options] - Settings object
-     * @returns {Function} - jQuery plugin
+     * @param {Object} [options] Settings object.
+     * @returns {Function} jQuery plugin.
      * @private
      */
 
@@ -463,10 +455,8 @@ var CustomSelect = function ($) {
         var $this = $(this);
         var data = $this.data('custom-select');
 
-        var _options = _extends({}, defaults, typeof options === 'object' && options);
-
         if (!data) {
-          data = new CustomSelect(this, _options);
+          data = new CustomSelect(this, options);
           $this.data('custom-select', data);
         }
       });
@@ -480,5 +470,7 @@ var CustomSelect = function ($) {
   $.fn['customSelect'].noConflict = function () {
     return $.fn['customSelect'];
   };
+
+  return CustomSelect;
 }($);
 //# sourceMappingURL=jquery.custom-select.js.map

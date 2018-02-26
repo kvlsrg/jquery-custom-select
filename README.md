@@ -5,41 +5,78 @@ Custom Select jQuery Plugin
 
 Simple plugin creates custom select instead of default `<select>`.
 
+### Demo
+
+You can view demo [here](https://kvlsrg.github.io/jquery-custom-select/).
+
 ### Usage
 
 ```js
 $('select').customSelect();
 ```
 
-Selectors naming of custom select based on BEM. Here is HTML structure of block (open dropdown state):
+Note, plugin contain default style theme. It's divided into two SCSS files:
 
-```html
-<div class="custom-select custom-select--active">
-  <button class="custom-select__option custom-select__option--value" type="button">...</button>
-  <div class="custom-select__dropdown">
-    <button class="custom-select__option" type="button">...</button>
-    <button class="custom-select__option" type="button">...</button>
-    <button class="custom-select__option" type="button">...</button>
-  </div>
-</div>
+```
+sass
+├── _base.scss // Only dropdown positioning, reset of options & input
+└── jquery.custom-select.scss // Base & default theme
 ```
 
-Note, plugin does not contain any additional CSS except of base, which includes only dropdown positioning, reset of options & input.
+Selectors naming of custom select based on BEM & it's easy to create different style. Just import only base to Sass.
 
 ### Options
 
-Name | Type | Default | Description
----- | ---- | ------- | -----------
-`block` | string | `'custom-select'` | Class name (BEM block name)
-`hideCallback` | Function | `false` | Fires after dropdown closes
-`includeValue` | boolean | `false` | Shows chosen value option in dropdown, if enabled also cancels dropdown options rerender
-`keyboard` | boolean | `true` | Enables keyboard control
-`modifier` | string | `false` | Additional class, e.g. BEM modifier
-`placeholder` | string | `false` | Custom select placeholder hint, can be an HTML string (appears if there is no explicitly selected options)
-`search` | boolean | `false` | Adds input to search options
-`showCallback` | Function | `false` | Fires after dropdown opens
-`transition` | number &#124;&#124; string | `100` | jQuery slideUp/Down speed
+* **`block`**
+    <br>
+    (type: _string_, default: `'custom-select'`)
+    <br>
+    Custom select BEM block name.
 
-### Demo
+* **`hideCallback`**
+    <br>
+    (type: _Function_, default: `false`)
+    <br>
+    Fires after dropdown closes.
 
-You can view demo [here](https://kvlsrg.github.io/jquery-custom-select/).
+* **`includeValue`**
+    <br>
+    (type: _boolean_, default: `false`)
+    <br>
+    Adds chosen value option to dropdown. If enabled also cancels dropdown options rerender.
+
+* **`keyboard`**
+    <br>
+    (type: _boolean_, default: `true`)
+    <br>
+    Enables keyboard control.
+
+* **`modifier`**
+    <br>
+    (type: _string_, default: `false`) 
+    <br>
+    Custom select block BEM modifier.
+
+* **`placeholder`**
+    <br>
+    (type: _string_, default: `false`)
+    <br>
+    Placeholder hint, can be an HTML string (appears only if there is no explicitly selected options).
+
+* **`search`**
+    <br>
+    (type: _boolean_, default: `false`)
+    <br>
+    Adds input to filter options.
+
+* **`showCallback`**
+    <br>
+    (type: _Function_, default: `false`)
+    <br>
+    Fires after dropdown opens.
+
+* **`transition`**
+    <br>
+    (type: _number | string_, default: `0`)
+    <br>
+    jQuery slideUp/Down param.
