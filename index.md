@@ -19,6 +19,22 @@ By default, all the classes of `<option>` elements are copied.
   </script>
 </p>
 
+Also, if original `<select>` have explicitly selected `<option>` (with `selected` attribute) custom select shows it as 
+chosen value.
+
+<p markdown="0">
+  <select class="select select--default">
+    <option value="1">First Item</option>
+    <option value="2">Second Item</option>
+    <option value="3" selected>Third Item</option>
+    <option value="4">Fourth Item</option>
+    <option value="5">Fifth Very Very Long Item</option>
+  </select>
+  <script>
+    $('.select--default').customSelect();
+  </script>
+</p>
+
 ```js
 $('select').customSelect();
 ```
