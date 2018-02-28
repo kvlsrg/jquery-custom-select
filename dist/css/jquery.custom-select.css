@@ -11,10 +11,11 @@
   box-sizing: border-box;
   display: block;
   width: 100%;
-  padding: 0 5px;
+  padding: 0;
   background-color: transparent;
   border: 0;
   border-radius: 0;
+  font-family: inherit;
   white-space: nowrap;
   text-align: left;
   text-overflow: ellipsis;
@@ -29,10 +30,11 @@
   box-sizing: border-box;
   display: block;
   width: 100%;
-  padding: 0 5px;
+  padding: 0;
   border-width: 1px 0;
   border-style: solid;
   border-radius: 0;
+  font-family: inherit;
 }
 
 .custom-select__dropdown {
@@ -53,15 +55,10 @@
  * Custom Select jQuery Plugin Theme
  */
 .custom-select__option {
-  overflow: hidden;
   position: relative;
-  box-sizing: border-box;
   padding: 0.375rem 0.75rem;
-  font-family: inherit;
   font-size: 1rem;
   line-height: 1.5;
-  white-space: nowrap;
-  text-overflow: ellipsis;
 }
 
 .custom-select__option:focus {
@@ -114,9 +111,7 @@
   height: 2.25rem;
   margin-top: -1px;
   padding: 0 0.75rem;
-  border-width: 1px 0;
   transform: translateY(1px);
-  font-family: inherit;
   font-size: inherit;
   border-color: #e6e6e6;
 }
@@ -135,7 +130,6 @@
   overflow: hidden;
   z-index: 1;
   top: calc(100% - 1px);
-  background-color: #fff;
   border-width: 0 1px 1px;
   border-style: solid;
   border-color: #e6e6e6;
