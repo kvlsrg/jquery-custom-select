@@ -14,10 +14,11 @@ $custom-select-block: "custom-select" !default;
     box-sizing: border-box;
     display: block;
     width: 100%;
-    padding: 0 5px;
+    padding: 0;
     background-color: transparent;
     border: 0;
     border-radius: 0;
+    font-family: inherit;
     white-space: nowrap;
     text-align: left;
     text-overflow: ellipsis;
@@ -32,10 +33,11 @@ $custom-select-block: "custom-select" !default;
     box-sizing: border-box;
     display: block;
     width: 100%;
-    padding: 0 5px;
+    padding: 0;
     border-width: 1px 0;
     border-style: solid;
     border-radius: 0;
+    font-family: inherit;
   }
 
   &__dropdown {
