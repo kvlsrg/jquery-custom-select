@@ -41,9 +41,7 @@ $('select').customSelect();
 
 ## Options
 
-* #### `block` (default: `'custom-select'`) - Other class name (BEM block name)
-
-    Note, this example have same style in demo, but classes of all custom select elements are different.
+* **`block`**  (type: _string_, default: `'custom-select'`) Custom select BEM block name.
 
     <p markdown="0">
       <select class="select select--block">
@@ -66,7 +64,7 @@ $('select').customSelect();
     });
     ```
 
-* #### `includeValue` (default: `false`) - Included in dropdown current value
+* **`includeValue`** (type: _boolean_, default: `false`) Adds chosen value option to dropdown. If enabled also cancels dropdown options rerender.
 
     Dropdown always includes all options of original select, current value don't removes.
 
@@ -91,7 +89,7 @@ $('select').customSelect();
     });
     ```
 
-* #### `modifier` (default: `false`) - Block modifier (additional CSS class)
+* **`modifier`** (type: _string_, default: `false`) Custom select block BEM modifier.
 
     <p markdown="0">
       <select class="select select--modifier">
@@ -114,7 +112,7 @@ $('select').customSelect();
     });
     ```
 
-* #### `placeholder` (default: `false`) - Placeholder hint
+* **`placeholder`** (type: _string_, default: `false`) Placeholder hint, can be an HTML string (appears only if there is no explicitly selected options).
 
     <p markdown="0">
       <select class="select select--placeholder">
@@ -137,7 +135,7 @@ $('select').customSelect();
     });
     ```
 
-* #### `search` (default: `false`) - Options search
+* **`search`** (type: _boolean_, default: `false`) Adds input to filter options.
 
     Search input appears in dropdown to filter options.
 
