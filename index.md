@@ -53,14 +53,14 @@ $('select').customSelect();
       </select>
       <script>
         $('.select--block').customSelect({
-          block: 'my-custom-select'
+          block: 'my-select'
         });
       </script>
     </p>
 
     ```js
     $('select').customSelect({
-      block: 'my-custom-select'
+      block: 'my-select'
     });
     ```
 
