@@ -12,7 +12,7 @@ By default, all the classes of `<option>` elements are copied.
     <option value="2">Second Item</option>
     <option class="bold" value="3">Third Item</option>
     <option value="4">Fourth Item</option>
-    <option class="bold" value="5">Fifth Very Very Long Item</option>
+    <option class="bold" value="5">Fifth Item</option>
   </select>
   <script>
     $('.select--default').customSelect();
@@ -28,7 +28,7 @@ chosen value.
     <option value="2">Second Item</option>
     <option value="3" selected>Third Item</option>
     <option value="4">Fourth Item</option>
-    <option value="5">Fifth Very Very Long Item</option>
+    <option value="5">Fifth Item</option>
   </select>
   <script>
     $('.select--default').customSelect();
@@ -49,7 +49,7 @@ $('select').customSelect();
         <option value="2">Second Item</option>
         <option value="3">Third Item</option>
         <option value="4">Fourth Item</option>
-        <option value="5">Fifth Very Very Long Item</option>
+        <option value="5">Fifth Item</option>
       </select>
       <script>
         $('.select--block').customSelect({
@@ -74,7 +74,7 @@ $('select').customSelect();
         <option value="2">Second Item</option>
         <option value="3">Third Item</option>
         <option value="4">Fourth Item</option>
-        <option value="5">Fifth Very Very Long Item</option>
+        <option value="5">Fifth Item</option>
       </select>
       <script>
         $('.select--include-value').customSelect({
@@ -97,7 +97,7 @@ $('select').customSelect();
         <option value="2">Second Item</option>
         <option value="3">Third Item</option>
         <option value="4">Fourth Item</option>
-        <option value="5">Fifth Very Very Long Item</option>
+        <option value="5">Fifth Item</option>
       </select>
       <script>
         $('.select--modifier').customSelect({
@@ -120,7 +120,7 @@ $('select').customSelect();
         <option value="2">Second Item</option>
         <option value="3">Third Item</option>
         <option value="4">Fourth Item</option>
-        <option value="5">Fifth Very Very Long Item</option>
+        <option value="5">Fifth Item</option>
       </select>
       <script>
         $('.select--placeholder').customSelect({
@@ -145,7 +145,7 @@ $('select').customSelect();
         <option value="2">Second Item</option>
         <option value="3">Third Item</option>
         <option value="4">Fourth Item</option>
-        <option value="5">Fifth Very Very Long Item</option>
+        <option value="5">Fifth Item</option>
       </select>
       <script>
         $('.select--search').customSelect({
