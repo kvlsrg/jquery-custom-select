@@ -1,0 +1,14 @@
+//
+// Custom Select Default Demo
+//
+
+// Show original options classes copying
+.custom-select {
+
+  &__option {
+
+    &.bold {
+      font-weight: bold;
+    }
+  }
+}

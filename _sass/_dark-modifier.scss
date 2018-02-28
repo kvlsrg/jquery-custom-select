@@ -1,8 +1,7 @@
-/*
- * Custom Select jQuery Plugin Demo
- */
+//
+// Custom Select Dark Modifier Demo
+//
 
-// Dark modifier
 .custom-select {
 
   &__option {
@@ -44,17 +43,6 @@
     .custom-select--dark & {
       background-color: #343436;
       border-color: #000;
-    }
-  }
-}
-
-// Show original options classes copying
-.custom-select {
-
-  &__option {
-
-    &.bold {
-      font-weight: bold;
     }
   }
 }
