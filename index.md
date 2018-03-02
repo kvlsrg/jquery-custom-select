@@ -88,6 +88,29 @@ $('select').customSelect();
       includeValue: true
     });
     ```
+    
+* **`keyboard`** (type: _boolean_, default: `true`) Enables keyboard control.
+
+    <p markdown="0">
+      <select class="select select--keyboard">
+        <option value="1">First Item</option>
+        <option value="2">Second Item</option>
+        <option value="3">Third Item</option>
+        <option value="4">Fourth Item</option>
+        <option value="5">Fifth Item</option>
+      </select>
+      <script>
+        $('.select--keyboard').customSelect({
+          keyboard: false
+        });
+      </script>
+    </p>
+    
+    ```js
+    $('select').customSelect({
+      keyboard: false
+    });
+    ```
 
 * **`modifier`** (type: _string_, default: `false`) Custom select block BEM modifier.
 
@@ -124,14 +147,14 @@ $('select').customSelect();
       </select>
       <script>
         $('.select--placeholder').customSelect({
-          placeholder: '<span style="color: gray;">Please Select</span>'
+          placeholder: '<span style="color: darkgray;">Please Select</span>'
         });
       </script>
     </p>
 
     ```js
     $('select').customSelect({
-      placeholder: '<span style="color: gray;">Please Select</span>'
+      placeholder: '<span style="color: darkgray;">Please Select</span>'
     });
     ```
 
@@ -157,6 +180,85 @@ $('select').customSelect();
     ```js
     $('select').customSelect({
       search: true
+    });
+    ```
+
+* **`transition`** (type: _number_ &#124; _string_, default: `0`) jQuery slideUp/Down param.
+
+    <p markdown="0">
+      <select class="select select--transition">
+        <option value="1">First Item</option>
+        <option value="2">Second Item</option>
+        <option value="3">Third Item</option>
+        <option value="4">Fourth Item</option>
+        <option value="5">Fifth Item</option>
+      </select>
+      <script>
+        $('.select--transition').customSelect({
+          transition: 400
+        });
+      </script>
+    </p>
+
+    ```js
+    $('select').customSelect({
+      transition: 400
+    });
+    ```
+    
+* **`hideCallback`** (type: _Function_, default: `false`) Fires after dropdown closes.
+
+    <p markdown="0">
+      <select class="select select--hide-callback">
+        <option value="1">First Item</option>
+        <option value="2">Second Item</option>
+        <option value="3">Third Item</option>
+        <option value="4">Fourth Item</option>
+        <option value="5">Fifth Item</option>
+      </select>
+      <script>
+        $('.select--hide-callback').customSelect({
+          hideCallback: function () {
+            var $value = $(this).find('[class$="value"]');
+            console.log(`Dropdown closed! Value text is "${$value.text()}".`);
+          }
+        });
+      </script>
+    </p>
+
+    ```js
+    $('select').customSelect({
+      hideCallback: function () {
+        var $value = $(this).find('[class$="value"]');
+        console.log(`Dropdown closed! Value text is "${$value.text()}".`);
+      }
+    });
+    ```
+    
+* **`showCallback`** (type: _Function_, default: `false`) Fires after dropdown opens.
+
+    <p markdown="0">
+      <select class="select select--show-callback">
+        <option value="1">First Item</option>
+        <option value="2">Second Item</option>
+        <option value="3">Third Item</option>
+        <option value="4">Fourth Item</option>
+        <option value="5">Fifth Item</option>
+      </select>
+      <script>
+        $('.select--show-callback').customSelect({
+          showCallback: function () {
+            console.log('Dropdown opened!');
+          }
+        });
+      </script>
+    </p>
+
+    ```js
+    $('select').customSelect({
+      showCallback: function () {
+        console.log('Dropdown opened!');
+      }
     });
     ```
 
