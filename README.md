@@ -15,10 +15,10 @@ You can view docs & demo [here](https://kvlsrg.github.io/jquery-custom-select/).
 $('select').customSelect();
 ```
 
-Note, plugin contain default style theme. It's divided into two SCSS files:
+Note, plugin contains default theme. It's divided into two SCSS files:
 
 ```
 sass
 ├── _base.scss // Only dropdown positioning, reset of options & input
-└── jquery.custom-select.scss // Base & default theme
+└── jquery.custom-select.scss // Base + default theme
 ```
