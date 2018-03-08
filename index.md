@@ -163,12 +163,15 @@ $('select').customSelect();
     Search input appears in dropdown to filter options.
 
     <p markdown="0">
-      <select class="select select--search">
-        <option value="1">First Item</option>
+      <select class="select select--search"><option value="1">First Item</option>
         <option value="2">Second Item</option>
         <option value="3">Third Item</option>
         <option value="4">Fourth Item</option>
         <option value="5">Fifth Item</option>
+        <option value="6">Sixth Item</option>
+        <option value="7">Seventh Item</option>
+        <option value="8">Eighth Item</option>
+        <option value="9">Ninth Item</option>
       </select>
       <script>
         $('.select--search').customSelect({
