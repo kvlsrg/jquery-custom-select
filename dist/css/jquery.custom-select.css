@@ -105,6 +105,23 @@
   border-radius: 0 0 0.25rem 0.25rem;
 }
 
+.custom-select__option-wrap {
+  overflow-y: auto;
+  max-height: 11.25rem;
+}
+
+.custom-select__option-wrap::-webkit-scrollbar {
+  width: 16px;
+}
+
+.custom-select__option-wrap::-webkit-scrollbar-thumb {
+  background-color: #e6e6e6;
+  background-clip: padding-box;
+  border-width: 0 4px;
+  border-style: solid;
+  border-color: transparent;
+}
+
 .custom-select__input {
   position: relative;
   z-index: 1;
