@@ -153,6 +153,10 @@ var CustomSelect = function ($) {
       this._$dropdown.slideDown(this._options.transition, function () {
         if (_this2._options.search) {
           _this2._$input.focus();
+
+          if (_this2._options.includeValue) {
+            _this2._scroll();
+          }
         } // Open callback
 
 
@@ -188,6 +192,14 @@ var CustomSelect = function ($) {
     _proto._hide = function _hide() {
       var _this3 = this;
 
+      if (this._options.search) {
+        this._$input.val('').blur();
+
+        this._$options.show();
+
+        this._$wrap.scrollTop(0);
+      }
+
       this._$dropdown.slideUp(this._options.transition, function () {
         _this3._$element.removeClass(_this3._activeModifier).removeClass(_this3._dropupModifier); // Close callback
 
@@ -207,16 +219,36 @@ var CustomSelect = function ($) {
         this._$options.blur();
 
         $(window).off('keydown', this._keydown);
-      } // Clear search
-
-
-      if (this._options.search) {
-        this._$options.show();
-
-        this._$input.val('').blur();
-
-        this._$wrap.scrollTop(0);
       }
+    };
+    /**
+     * Centers chosen option in scrollable element
+     * of dropdown.
+     *
+     * @private
+     */
+
+
+    _proto._scroll = function _scroll() {
+      var _this4 = this;
+
+      this._$options.each(function (i, option) {
+        var $option = $(option);
+
+        if ($option.text() === _this4._$value.text()) {
+          var top = $option.position().top;
+
+          var height = _this4._$wrap.outerHeight();
+
+          var center = height / 2 - $option.outerHeight() / 2;
+
+          if (top > center) {
+            _this4._$wrap.scrollTop(top - center);
+          }
+
+          return false;
+        }
+      });
     };
     /**
      * Changes value of custom select & `<select>`
@@ -228,7 +260,7 @@ var CustomSelect = function ($) {
 
 
     _proto._select = function _select(event) {
-      var _this4 = this;
+      var _this5 = this;
 
       event.preventDefault();
       var choice = $(event.currentTarget).text().trim();
@@ -240,18 +272,18 @@ var CustomSelect = function ($) {
       this._$values.prop('selected', false);
 
       $.each(values, function (i, el) {
-        if (!_this4._options.includeValue && el === choice) {
+        if (!_this5._options.includeValue && el === choice) {
           values.splice(i, 1);
         }
 
-        $.each(_this4._$values, function (i, option) {
+        $.each(_this5._$values, function (i, option) {
           var $option = $(option);
 
           if ($option.text().trim() === choice) {
             var cssClass = $option.attr('class');
             $option.prop('selected', true);
 
-            _this4._$value.addClass(cssClass).data('class', cssClass);
+            _this5._$value.addClass(cssClass).data('class', cssClass);
           }
         });
       });
@@ -275,8 +307,8 @@ var CustomSelect = function ($) {
           var $option = $(option);
           $option.text(values[i]); // Reset option class
 
-          $option.attr('class', _this4._options.block + "__option");
-          $.each(_this4._$values, function () {
+          $option.attr('class', _this5._options.block + "__option");
+          $.each(_this5._$values, function () {
             var $this = $(this);
 
             if ($this.text().trim() === values[i]) {
@@ -291,15 +323,15 @@ var CustomSelect = function ($) {
       }
     };
     /**
-     * Wraps options by wrap element, adds input to
-     * dropdown & implements options search.
+     * Wraps options by wrap element, adds search
+     * input to dropdown.
      *
      * @private
      */
 
 
     _proto._search = function _search() {
-      var _this5 = this;
+      var _this6 = this;
 
       this._$input = $("<input class=\"" + this._options.block + "__input\" autocomplete=\"off\">");
 
@@ -311,18 +343,18 @@ var CustomSelect = function ($) {
       this._$wrap = this._$element.find("." + this._options.block + "__option-wrap");
 
       this._$input.on('focus', function () {
-        _this5._options.index = -1;
+        _this6._options.index = -1;
       });
 
       this._$input.on('keyup', function () {
-        var query = _this5._$input.val().trim();
+        var query = _this6._$input.val().trim();
 
-        _this5._$wrap.scrollTop(0);
+        _this6._$wrap.scrollTop(0);
 
         if (query.length) {
           setTimeout(function () {
-            if (query === _this5._$input.val().trim()) {
-              $.each(_this5._$options, function (i, option) {
+            if (query === _this6._$input.val().trim()) {
+              $.each(_this6._$options, function (i, option) {
                 var $option = $(option);
                 var text = $option.text().trim().toLowerCase();
                 var match = text.indexOf(query.toLowerCase()) !== -1;
@@ -331,7 +363,7 @@ var CustomSelect = function ($) {
             }
           }, 300);
         } else {
-          _this5._$options.show();
+          _this6._$options.show();
         }
       });
     };
