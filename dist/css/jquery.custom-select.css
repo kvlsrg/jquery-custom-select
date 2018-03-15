@@ -38,6 +38,7 @@
   border-width: 1px 0;
   border-style: solid;
   border-radius: 0;
+  box-shadow: none;
   font-family: inherit;
 }
 
@@ -132,9 +133,9 @@
   height: 2.25rem;
   margin-top: -1px;
   padding: 0 0.75rem;
+  border-color: #e6e6e6;
   transform: translateY(1px);
   font-size: 1rem;
-  border-color: #e6e6e6;
 }
 
 .custom-select__input:focus {
