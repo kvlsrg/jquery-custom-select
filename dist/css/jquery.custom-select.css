@@ -26,6 +26,10 @@
   appearance: none;
 }
 
+.custom-select__option-wrap {
+  position: relative;
+}
+
 .custom-select__input {
   box-sizing: border-box;
   display: block;

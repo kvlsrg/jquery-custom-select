@@ -29,6 +29,10 @@ $custom-select-block: "custom-select" !default;
     appearance: none;
   }
 
+  &__option-wrap {
+    position: relative;
+  }
+
   &__input {
     box-sizing: border-box;
     display: block;

@@ -160,6 +160,10 @@ const CustomSelect = (($) => {
       this._$dropdown.slideDown(this._options.transition, () => {
         if (this._options.search) {
           this._$input.focus();
+
+          if (this._options.includeValue) {
+            this._scroll();
+          }
         }
 
         // Open callback
@@ -192,6 +196,12 @@ const CustomSelect = (($) => {
      * @private
      */
     _hide() {
+      if (this._options.search) {
+        this._$input.val('').blur();
+        this._$options.show();
+        this._$wrap.scrollTop(0);
+      }
+
       this._$dropdown.slideUp(this._options.transition, () => {
         this._$element
           .removeClass(this._activeModifier)
@@ -216,15 +226,30 @@ const CustomSelect = (($) => {
         this._$options.blur();
         $(window).off('keydown', this._keydown);
       }
+    }
 
-      // Clear search
-      if (this._options.search) {
-        this._$options.show();
-        this._$input
-          .val('')
-          .blur();
-        this._$wrap.scrollTop(0);
-      }
+    /**
+     * Centers chosen option in scrollable element
+     * of dropdown.
+     *
+     * @private
+     */
+    _scroll() {
+      this._$options.each((i, option) => {
+        const $option = $(option);
+
+        if ($option.text() === this._$value.text()) {
+          const top = $option.position().top;
+          const height = this._$wrap.outerHeight();
+          const center = height / 2 - $option.outerHeight() / 2;
+
+          if (top > center) {
+            this._$wrap.scrollTop(top - center);
+          }
+
+          return false;
+        }
+      });
     }
 
     /**
@@ -298,8 +323,8 @@ const CustomSelect = (($) => {
     }
 
     /**
-     * Wraps options by wrap element, adds input to
-     * dropdown & implements options search.
+     * Wraps options by wrap element, adds search
+     * input to dropdown.
      *
      * @private
      */
