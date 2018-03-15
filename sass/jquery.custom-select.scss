@@ -84,9 +84,9 @@
     height: 2.25rem;
     margin-top: -1px;
     padding: 0 $_gutter;
+    border-color: darken($white, 10%);
     transform: translateY(1px);
     font-size: 1rem;
-    border-color: darken($white, 10%);
 
     &:focus {
       outline: none;
