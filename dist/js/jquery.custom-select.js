@@ -349,9 +349,9 @@ var CustomSelect = function ($) {
       this._$input.on('keyup', function () {
         var query = _this6._$input.val().trim();
 
-        _this6._$wrap.scrollTop(0);
-
         if (query.length) {
+          _this6._$wrap.scrollTop(0);
+
           setTimeout(function () {
             if (query === _this6._$input.val().trim()) {
               $.each(_this6._$options, function (i, option) {

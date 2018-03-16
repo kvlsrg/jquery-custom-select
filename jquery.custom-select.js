@@ -343,9 +343,9 @@ const CustomSelect = (($) => {
       this._$input.on('keyup', () => {
         const query = this._$input.val().trim();
 
-        this._$wrap.scrollTop(0);
-
         if (query.length) {
+          this._$wrap.scrollTop(0);
+
           setTimeout(() => {
             if (query === this._$input.val().trim()) {
               $.each(this._$options, (i, option) => {
