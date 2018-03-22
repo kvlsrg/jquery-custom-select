@@ -38,8 +38,10 @@
   border-width: 1px 0;
   border-style: solid;
   border-radius: 0;
-  box-shadow: none;
   font-family: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 .custom-select__dropdown {
