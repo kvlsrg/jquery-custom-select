@@ -17,6 +17,7 @@
       outline: none;
     }
 
+    &--selected,
     &:hover,
     &:focus {
       background-color: darken($white, 2.5%);

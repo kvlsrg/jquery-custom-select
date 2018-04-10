@@ -47,6 +47,7 @@ const CustomSelect = (($) => {
       // Modifiers
       this._activeModifier = `${this._options.block}--active`;
       this._dropupModifier = `${this._options.block}--dropup`;
+      this._optionSelectedModifier = `${this._options.block}__option--selected`;
 
       // Event handlers that can be removed
       this._keydown = this._keydown.bind(this);
@@ -114,7 +115,7 @@ const CustomSelect = (($) => {
             .addClass(cssClass).data('class', cssClass);
 
           if (this._options.includeValue || this._options.placeholder) {
-            $option.addClass(cssClass);
+            $option.addClass(`${cssClass} ${this._optionSelectedModifier}`);
             this._$dropdown.append($option);
           }
         } else {
@@ -235,7 +236,7 @@ const CustomSelect = (($) => {
      * @private
      */
     _scroll() {
-      this._$options.each((i, option) => {
+      $.each(this._$options, (i, option) => {
         const $option = $(option);
 
         if ($option.text() === this._$value.text()) {
@@ -288,8 +289,8 @@ const CustomSelect = (($) => {
 
       this._hide();
 
-      // Update dropdown options content
       if (!this._options.includeValue) {
+        // Update dropdown options content
         if (this._$options.length > values.length) {
           const last = this._$options.eq(values.length);
 
@@ -314,6 +315,19 @@ const CustomSelect = (($) => {
               $option.addClass($this.attr('class'));
             }
           });
+        });
+      } else {
+        // Select chosen option
+        this._$options.removeClass(this._optionSelectedModifier);
+
+        $.each(this._$options, (i, option) => {
+          const $option = $(option);
+
+          if ($option.text().trim() === choice) {
+            $option.addClass(this._optionSelectedModifier);
+
+            return false;
+          }
         });
       }
 

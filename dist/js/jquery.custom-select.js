@@ -41,7 +41,8 @@ var CustomSelect = function ($) {
       this._options = _extends({}, defaults, typeof options === 'object' && options); // Modifiers
 
       this._activeModifier = this._options.block + "--active";
-      this._dropupModifier = this._options.block + "--dropup"; // Event handlers that can be removed
+      this._dropupModifier = this._options.block + "--dropup";
+      this._optionSelectedModifier = this._options.block + "__option--selected"; // Event handlers that can be removed
 
       this._keydown = this._keydown.bind(this);
       this._dropup = this._dropup.bind(this);
@@ -102,7 +103,7 @@ var CustomSelect = function ($) {
           _this._$value.text(el).addClass(cssClass).data('class', cssClass);
 
           if (_this._options.includeValue || _this._options.placeholder) {
-            $option.addClass(cssClass);
+            $option.addClass(cssClass + " " + _this._optionSelectedModifier);
 
             _this._$dropdown.append($option);
           }
@@ -232,7 +233,7 @@ var CustomSelect = function ($) {
     _proto._scroll = function _scroll() {
       var _this4 = this;
 
-      this._$options.each(function (i, option) {
+      $.each(this._$options, function (i, option) {
         var $option = $(option);
 
         if ($option.text() === _this4._$value.text()) {
@@ -288,10 +289,10 @@ var CustomSelect = function ($) {
         });
       });
 
-      this._hide(); // Update dropdown options content
-
+      this._hide();
 
       if (!this._options.includeValue) {
+        // Update dropdown options content
         if (this._$options.length > values.length) {
           var last = this._$options.eq(values.length);
 
@@ -315,6 +316,18 @@ var CustomSelect = function ($) {
               $option.addClass($this.attr('class'));
             }
           });
+        });
+      } else {
+        // Select chosen option
+        this._$options.removeClass(this._optionSelectedModifier);
+
+        $.each(this._$options, function (i, option) {
+          var $option = $(option);
+
+          if ($option.text().trim() === choice) {
+            $option.addClass(_this5._optionSelectedModifier);
+            return false;
+          }
         });
       }
 

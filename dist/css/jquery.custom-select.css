@@ -72,7 +72,7 @@
   outline: none;
 }
 
-.custom-select__option:hover, .custom-select__option:focus {
+.custom-select__option--selected, .custom-select__option:hover, .custom-select__option:focus {
   background-color: #f9f9f9;
 }
 
