@@ -2,12 +2,10 @@
  * Custom Select jQuery Plugin Base
  */
 
-$white: #fff !default;
 $custom-select-block: "custom-select" !default;
 
 .#{$custom-select-block} {
   position: relative;
-  background-color: $white;
 
   &__option {
     overflow: hidden;
@@ -53,7 +51,6 @@ $custom-select-block: "custom-select" !default;
     width: 100%;
     top: 100%;
     left: 0;
-    background-color: $white;
 
     .#{$custom-select-block}--dropup & {
       top: auto;

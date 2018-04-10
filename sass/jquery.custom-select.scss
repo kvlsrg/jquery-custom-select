@@ -4,6 +4,8 @@
  * Custom Select jQuery Plugin Theme
  */
 
+$white: #fff !default;
+
 .#{$custom-select-block} {
   $_gutter: 0.75rem;
 
@@ -17,7 +19,6 @@
       outline: none;
     }
 
-    &--selected,
     &:hover,
     &:focus {
       background-color: darken($white, 2.5%);
@@ -25,6 +26,7 @@
 
     &--value {
       padding-right: $_gutter * 2 + 0.375rem;
+      background-color: $white;
       border: 1px solid darken($white, 10%);
       border-radius: 0.25rem;
 
@@ -51,6 +53,11 @@
         border-bottom-color: transparent;
         border-radius: 0.25rem 0.25rem 0 0;
 
+        &:hover,
+        &:focus {
+          background-color: $white;
+        }
+
         @at-root {
           .#{$custom-select-block}--dropup#{&} {
             border-top-color: transparent;
@@ -59,6 +66,10 @@
           }
         }
       }
+    }
+
+    &--selected {
+      background-color: darken($white, 1.25%);
     }
   }
 
@@ -104,6 +115,7 @@
     overflow: hidden;
     z-index: 1;
     top: calc(100% - 1px);
+    background-color: $white;
     border-width: 0 1px 1px;
     border-style: solid;
     border-color: darken($white, 10%);
