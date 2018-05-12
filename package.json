@@ -1,7 +1,7 @@
 {
   "name": "jquery-custom-select",
   "description": "Custom Select jQuery Plugin",
-  "version": "1.4.1",
+  "version": "1.4.2",
   "author": "Sergey Kovalenko",
   "bugs": {
     "url": "https://github.com/kvlsrg/jquery-custom-select/issues"
