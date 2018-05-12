@@ -31,7 +31,10 @@
     }
 
     &--selected {
-      background-color: darken(#1d1f20, 3%);
+
+      .custom-select--dark & {
+        background-color: darken(#1d1f20, 3%);
+      }
     }
   }
 
