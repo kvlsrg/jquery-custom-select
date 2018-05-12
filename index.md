@@ -64,9 +64,11 @@ $('select').customSelect();
     });
     ```
 
-* **`includeValue`** (type: _boolean_, default: `false`) Adds chosen value option to dropdown. If enabled also cancels dropdown options rerender.
+* **`includeValue`** (type: _boolean_, default: `false`) Adds chosen value option to dropdown. If enabled also cancels 
+dropdown options rerender.
 
-    Dropdown always includes all options of original select, current value don't removes.
+    Dropdown always includes all options of original select. Current value is not removed & is marked with selected 
+    modifier.
 
     <p markdown="0">
       <select class="select select--include-value">
@@ -135,7 +137,8 @@ $('select').customSelect();
     });
     ```
 
-* **`placeholder`** (type: _string_, default: `false`) Placeholder hint, can be an HTML string (appears only if there is no explicitly selected options).
+* **`placeholder`** (type: _string_, default: `false`) Placeholder hint, can be an HTML string (appears only if there is 
+no explicitly selected options).
 
     <p markdown="0">
       <select class="select select--placeholder">
