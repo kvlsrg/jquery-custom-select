@@ -1,4 +1,6 @@
-function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 /*!
  * Custom Select jQuery Plugin
@@ -38,10 +40,11 @@ var CustomSelect = function ($) {
      */
     function CustomSelect(select, options) {
       this._$select = $(select);
-      this._options = _extends({}, defaults, typeof options === 'object' && options); // Modifiers
+      this._options = _objectSpread({}, defaults, typeof options === 'object' && options); // Modifiers
 
       this._activeModifier = this._options.block + "--active";
-      this._dropupModifier = this._options.block + "--dropup"; // Event handlers that can be removed
+      this._dropupModifier = this._options.block + "--dropup";
+      this._optionSelectedModifier = this._options.block + "__option--selected"; // Event handlers that can be removed
 
       this._keydown = this._keydown.bind(this);
       this._dropup = this._dropup.bind(this);
@@ -103,6 +106,7 @@ var CustomSelect = function ($) {
 
           if (_this._options.includeValue || _this._options.placeholder) {
             $option.addClass(cssClass);
+            $option.addClass(_this._optionSelectedModifier);
 
             _this._$dropdown.append($option);
           }
@@ -232,7 +236,7 @@ var CustomSelect = function ($) {
     _proto._scroll = function _scroll() {
       var _this4 = this;
 
-      this._$options.each(function (i, option) {
+      $.each(this._$options, function (i, option) {
         var $option = $(option);
 
         if ($option.text() === _this4._$value.text()) {
@@ -288,10 +292,10 @@ var CustomSelect = function ($) {
         });
       });
 
-      this._hide(); // Update dropdown options content
-
+      this._hide();
 
       if (!this._options.includeValue) {
+        // Update dropdown options content
         if (this._$options.length > values.length) {
           var last = this._$options.eq(values.length);
 
@@ -315,6 +319,18 @@ var CustomSelect = function ($) {
               $option.addClass($this.attr('class'));
             }
           });
+        });
+      } else {
+        // Select chosen option
+        this._$options.removeClass(this._optionSelectedModifier);
+
+        $.each(this._$options, function (i, option) {
+          var $option = $(option);
+
+          if ($option.text().trim() === choice) {
+            $option.addClass(_this5._optionSelectedModifier);
+            return false;
+          }
         });
       }
 
