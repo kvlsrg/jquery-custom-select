@@ -53,6 +53,20 @@ var CustomSelect = function ($) {
       this._init();
     }
     /**
+     * Resets custom select options.
+     *
+     * @public
+     */
+
+
+    var _proto = CustomSelect.prototype;
+
+    _proto.reset = function reset() {
+      this._$dropdown.empty();
+
+      this._fill();
+    };
+    /**
      * Renders initial state of custom select & sets
      * options click event listeners.
      *
@@ -60,11 +74,7 @@ var CustomSelect = function ($) {
      */
 
 
-    var _proto = CustomSelect.prototype;
-
     _proto._init = function _init() {
-      var _this = this;
-
       this._$element = $("<div class=\"" + this._options.block + "\">\n           <button class=\"" + this._options.block + "__option " + this._options.block + "__option--value\" type=\"button\"></button>\n           <div class=\"" + this._options.block + "__dropdown\" style=\"display: none;\"></div>\n         </div>");
 
       this._$select.hide().after(this._$element);
@@ -73,6 +83,22 @@ var CustomSelect = function ($) {
         this._$element.addClass(this._options.modifier);
       }
 
+      this._$value = this._$element.find("." + this._options.block + "__option--value");
+      this._$dropdown = this._$element.find("." + this._options.block + "__dropdown");
+
+      this._fill();
+    };
+    /**
+     * Renders custom select options by original
+     * select element options.
+     *
+     * @private
+     */
+
+
+    _proto._fill = function _fill() {
+      var _this = this;
+
       this._$values = this._$select.find('option');
       this._values = [];
       $.each(this._$values, function (i, option) {
@@ -80,7 +106,6 @@ var CustomSelect = function ($) {
 
         _this._values.push(el);
       });
-      this._$value = this._$element.find("." + this._options.block + "__option--value");
 
       if (this._options.placeholder) {
         // Check explicitly selected option
@@ -93,8 +118,6 @@ var CustomSelect = function ($) {
           this._$select.prop('selectedIndex', -1);
         }
       }
-
-      this._$dropdown = this._$element.find("." + this._options.block + "__dropdown"); // Render options
 
       $.each(this._values, function (i, el) {
         var cssClass = _this._$values.eq(i).attr('class');
@@ -506,6 +529,10 @@ var CustomSelect = function ($) {
         if (!data) {
           data = new CustomSelect(this, options);
           $this.data('custom-select', data);
+        } else {
+          if (options === 'reset') {
+            data.reset();
+          }
         }
       });
     };
