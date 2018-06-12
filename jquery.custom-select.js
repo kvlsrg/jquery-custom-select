@@ -496,20 +496,22 @@ const CustomSelect = (($) => {
     /**
      * Creates jQuery plugin function.
      *
-     * @param {Object} [options] Settings object.
+     * @param {(Object|string)=} config Options or method.
      * @returns {Function} jQuery plugin.
      * @private
      */
-    static _jQueryPlugin(options) {
+    static _jQueryPlugin(config) {
       return this.each(function () {
         const $this = $(this);
         let data = $this.data('custom-select');
 
         if (!data) {
-          data = new CustomSelect(this, options);
-          $this.data('custom-select', data);
+          if (typeof config !== 'string') {
+            data = new CustomSelect(this, config);
+            $this.data('custom-select', data);
+          }
         } else {
-          if (options === 'reset') {
+          if (config === 'reset') {
             data.reset();
           }
         }
