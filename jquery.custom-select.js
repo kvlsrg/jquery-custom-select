@@ -63,7 +63,7 @@ const CustomSelect = (($) => {
      * @public
      */
     reset() {
-      this._$dropdown.empty();
+      this._$dropdown.hide().empty();
       this._fill();
     }
 
