@@ -58,6 +58,16 @@ const CustomSelect = (($) => {
     }
 
     /**
+     * Resets custom select options.
+     *
+     * @public
+     */
+    reset() {
+      this._$dropdown.hide().empty();
+      this._fill();
+    }
+
+    /**
      * Renders initial state of custom select & sets
      * options click event listeners.
      *
@@ -79,6 +89,19 @@ const CustomSelect = (($) => {
         this._$element.addClass(this._options.modifier);
       }
 
+      this._$value = this._$element.find(`.${this._options.block}__option--value`);
+      this._$dropdown = this._$element.find(`.${this._options.block}__dropdown`);
+
+      this._fill();
+    }
+
+    /**
+     * Renders custom select options by original
+     * select element options.
+     *
+     * @private
+     */
+    _fill() {
       this._$values = this._$select.find('option');
       this._values = [];
 
@@ -86,8 +109,6 @@ const CustomSelect = (($) => {
         const el = $(option).text().trim();
         this._values.push(el);
       });
-
-      this._$value = this._$element.find(`.${this._options.block}__option--value`);
 
       if (this._options.placeholder) {
         // Check explicitly selected option
@@ -100,9 +121,6 @@ const CustomSelect = (($) => {
         }
       }
 
-      this._$dropdown = this._$element.find(`.${this._options.block}__dropdown`);
-
-      // Render options
       $.each(this._values, (i, el) => {
         const cssClass = this._$values.eq(i).attr('class');
         const $option = $(
@@ -478,18 +496,24 @@ const CustomSelect = (($) => {
     /**
      * Creates jQuery plugin function.
      *
-     * @param {Object} [options] Settings object.
+     * @param {(Object|string)=} config Options or method.
      * @returns {Function} jQuery plugin.
      * @private
      */
-    static _jQueryPlugin(options) {
+    static _jQueryPlugin(config) {
       return this.each(function () {
         const $this = $(this);
         let data = $this.data('custom-select');
 
         if (!data) {
-          data = new CustomSelect(this, options);
-          $this.data('custom-select', data);
+          if (typeof config !== 'string') {
+            data = new CustomSelect(this, config);
+            $this.data('custom-select', data);
+          }
+        } else {
+          if (config === 'reset') {
+            data.reset();
+          }
         }
       });
     }
