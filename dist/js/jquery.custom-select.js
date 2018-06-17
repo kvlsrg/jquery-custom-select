@@ -105,7 +105,13 @@ var CustomSelect = function ($) {
         var el = $(option).text().trim();
 
         _this._values.push(el);
-      });
+      }); // Set value of select if it was cleared
+
+      var value = this._$select.val();
+
+      if (!value || !value.length) {
+        this._$select.val(this._$values.eq(0).val());
+      }
 
       if (this._options.placeholder) {
         // Check explicitly selected option

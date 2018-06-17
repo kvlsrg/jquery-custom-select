@@ -110,6 +110,12 @@ const CustomSelect = (($) => {
         this._values.push(el);
       });
 
+      // Set value of select if it was cleared
+      const value = this._$select.val();
+      if (!value || !value.length) {
+        this._$select.val(this._$values.eq(0).val());
+      }
+
       if (this._options.placeholder) {
         // Check explicitly selected option
         if (this._$select.find('[selected]').length) {
