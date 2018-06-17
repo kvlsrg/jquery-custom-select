@@ -105,7 +105,13 @@ var CustomSelect = function ($) {
         var el = $(option).text().trim();
 
         _this._values.push(el);
-      });
+      }); // Set value of select if it was cleared
+
+      var value = this._$select.val();
+
+      if (!value || !value.length) {
+        this._$select.val(this._$values.eq(0).val());
+      }
 
       if (this._options.placeholder) {
         // Check explicitly selected option
@@ -129,7 +135,7 @@ var CustomSelect = function ($) {
 
           if (_this._options.includeValue || _this._options.placeholder) {
             $option.addClass(cssClass);
-            $option.addClass(_this._optionSelectedModifier);
+            $option.toggleClass(_this._optionSelectedModifier, _this._$values.eq(i).is('[selected]'));
 
             _this._$dropdown.append($option);
           }
