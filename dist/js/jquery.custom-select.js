@@ -135,7 +135,7 @@ var CustomSelect = function ($) {
 
           if (_this._options.includeValue || _this._options.placeholder) {
             $option.addClass(cssClass);
-            $option.addClass(_this._optionSelectedModifier);
+            $option.toggleClass(_this._optionSelectedModifier, _this._$values.eq(i).is('[selected]'));
 
             _this._$dropdown.append($option);
           }

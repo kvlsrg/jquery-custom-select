@@ -140,7 +140,7 @@ const CustomSelect = (($) => {
 
           if (this._options.includeValue || this._options.placeholder) {
             $option.addClass(cssClass);
-            $option.addClass(this._optionSelectedModifier);
+            $option.toggleClass(this._optionSelectedModifier, this._$values.eq(i).is('[selected]'));
             this._$dropdown.append($option);
           }
         } else {
