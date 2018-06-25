@@ -40,7 +40,7 @@ var CustomSelect = function ($) {
      */
     function CustomSelect(select, options) {
       this._$select = $(select);
-      this._options = _objectSpread({}, defaults, typeof options === 'object' && options); // Modifiers
+      this._options = _objectSpread({}, defaults, typeof options === 'object' ? options : {}); // Modifiers
 
       this._activeModifier = this._options.block + "--active";
       this._dropupModifier = this._options.block + "--dropup";

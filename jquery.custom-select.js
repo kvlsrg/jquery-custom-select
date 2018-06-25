@@ -41,7 +41,7 @@ const CustomSelect = (($) => {
       this._$select = $(select);
       this._options = {
         ...defaults,
-        ...typeof options === 'object' && options
+        ...typeof options === 'object' ? options : {}
       };
 
       // Modifiers
