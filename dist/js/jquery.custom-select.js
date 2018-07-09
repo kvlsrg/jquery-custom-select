@@ -40,7 +40,7 @@ var CustomSelect = function ($) {
      */
     function CustomSelect(select, options) {
       this._$select = $(select);
-      this._options = _objectSpread({}, defaults, typeof options === 'object' && options); // Modifiers
+      this._options = _objectSpread({}, defaults, typeof options === 'object' ? options : {}); // Modifiers
 
       this._activeModifier = this._options.block + "--active";
       this._dropupModifier = this._options.block + "--dropup";
@@ -129,6 +129,10 @@ var CustomSelect = function ($) {
         var cssClass = _this._$values.eq(i).attr('class');
 
         var $option = $("<button class=\"" + _this._options.block + "__option\" type=\"button\">" + el + "</button>");
+
+        if (_this._$values.eq(i).attr('disabled')) {
+          $option.prop('disabled', true);
+        }
 
         if (el === _this._$select.find(':selected').text().trim()) {
           _this._$value.text(el).addClass(cssClass).data('class', cssClass);
@@ -453,7 +457,7 @@ var CustomSelect = function ($) {
 
 
     _proto._keydown = function _keydown(event) {
-      var $visible = this._$options.filter(':visible');
+      var $visible = this._$options.filter(':visible').not('[disabled]');
 
       switch (event.keyCode) {
         // Down

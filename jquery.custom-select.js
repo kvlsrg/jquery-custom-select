@@ -41,7 +41,7 @@ const CustomSelect = (($) => {
       this._$select = $(select);
       this._options = {
         ...defaults,
-        ...typeof options === 'object' && options
+        ...typeof options === 'object' ? options : {}
       };
 
       // Modifiers
@@ -132,6 +132,10 @@ const CustomSelect = (($) => {
         const $option = $(
           `<button class="${this._options.block}__option" type="button">${el}</button>`
         );
+
+        if (this._$values.eq(i).attr('disabled')) {
+          $option.prop('disabled', true);
+        }
 
         if (el === this._$select.find(':selected').text().trim()) {
           this._$value
@@ -437,7 +441,7 @@ const CustomSelect = (($) => {
      * @private
      */
     _keydown(event) {
-      const $visible = this._$options.filter(':visible');
+      const $visible = this._$options.filter(':visible').not('[disabled]');
 
       switch (event.keyCode) {
         // Down

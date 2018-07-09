@@ -8,11 +8,13 @@ $white: #fff !default;
 
 .#{$custom-select-block} {
   $_gutter: 0.75rem;
+  $_color: #212121;
 
   &__option {
     position: relative;
     padding: 0.375rem $_gutter;
     font-size: 1rem;
+    color: $_color;
     line-height: 1.5;
 
     &:focus {
@@ -71,6 +73,16 @@ $white: #fff !default;
     &--selected {
       background-color: darken($white, 1.25%);
     }
+
+    &[disabled] {
+      color: lighten($_color, 50%);
+      cursor: default;
+
+      &:hover,
+      &:focus {
+        background-color: transparent;
+      }
+    }
   }
 
   &__option-wrap {
@@ -99,6 +111,7 @@ $white: #fff !default;
     border-color: darken($white, 10%);
     transform: translateY(1px);
     font-size: 1rem;
+    color: $_color;
 
     &:focus {
       outline: none;
