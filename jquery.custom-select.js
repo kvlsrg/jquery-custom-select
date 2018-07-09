@@ -133,6 +133,10 @@ const CustomSelect = (($) => {
           `<button class="${this._options.block}__option" type="button">${el}</button>`
         );
 
+        if (typeof this._$values.eq(i).attr('disabled') !== 'undefined') {
+            $option.attr('disabled', this._$values.eq(i).attr('disabled'));
+        }
+
         if (el === this._$select.find(':selected').text().trim()) {
           this._$value
             .text(el)
