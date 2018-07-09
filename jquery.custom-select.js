@@ -134,7 +134,7 @@ const CustomSelect = (($) => {
         );
 
         if (this._$values.eq(i).attr('disabled')) {
-            $option.prop('disabled', true);
+          $option.prop('disabled', true);
         }
 
         if (el === this._$select.find(':selected').text().trim()) {
@@ -441,7 +441,7 @@ const CustomSelect = (($) => {
      * @private
      */
     _keydown(event) {
-      const $visible = this._$options.filter(':visible');
+      const $visible = this._$options.filter(':visible').not('[disabled]');
 
       switch (event.keyCode) {
         // Down
