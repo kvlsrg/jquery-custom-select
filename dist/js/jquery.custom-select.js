@@ -25,7 +25,7 @@ var CustomSelect = function ($) {
      * Custom Select
      *
      * @param {Element} select Original `<select>` DOM element to customize.
-     * @param {Object=} options Settings plain object to overwrite defaults.
+     * @param {(Object|string)=} options Settings object or method name.
      * @param {string=} options.block Custom select BEM block name.
      * @param {Function=} options.hideCallback Fires after dropdown closes.
      * @param {boolean=} options.includeValue Adds chosen value option to
@@ -131,7 +131,9 @@ var CustomSelect = function ($) {
         }
 
         if (!$selected.length && i === 0 || el === $selected.text().trim()) {
-          _this._$value.text(el).addClass(cssClass).data('class', cssClass);
+          if (!_this._options.placeholder) {
+            _this._$value.text(el).addClass(cssClass).data('class', cssClass);
+          }
 
           if (_this._options.includeValue || _this._options.placeholder) {
             $option.addClass(cssClass);
