@@ -110,12 +110,6 @@ const CustomSelect = (($) => {
         this._values.push(el);
       });
 
-      // Set value of select if it was cleared
-      const value = this._$select.val();
-      if (!value || !value.length) {
-        this._$select.val(this._$values.eq(0).val());
-      }
-
       if (this._options.placeholder) {
         // Check explicitly selected option
         if (this._$select.find('[selected]').length) {
@@ -132,12 +126,13 @@ const CustomSelect = (($) => {
         const $option = $(
           `<button class="${this._options.block}__option" type="button">${el}</button>`
         );
+        const $selected = this._$select.find(':selected');
 
         if (this._$values.eq(i).attr('disabled')) {
           $option.prop('disabled', true);
         }
 
-        if (el === this._$select.find(':selected').text().trim()) {
+        if ((!$selected.length && i === 0) || el === $selected.text().trim()) {
           this._$value
             .text(el)
             .addClass(cssClass).data('class', cssClass);

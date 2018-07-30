@@ -105,13 +105,7 @@ var CustomSelect = function ($) {
         var el = $(option).text().trim();
 
         _this._values.push(el);
-      }); // Set value of select if it was cleared
-
-      var value = this._$select.val();
-
-      if (!value || !value.length) {
-        this._$select.val(this._$values.eq(0).val());
-      }
+      });
 
       if (this._options.placeholder) {
         // Check explicitly selected option
@@ -130,11 +124,13 @@ var CustomSelect = function ($) {
 
         var $option = $("<button class=\"" + _this._options.block + "__option\" type=\"button\">" + el + "</button>");
 
+        var $selected = _this._$select.find(':selected');
+
         if (_this._$values.eq(i).attr('disabled')) {
           $option.prop('disabled', true);
         }
 
-        if (el === _this._$select.find(':selected').text().trim()) {
+        if (!$selected.length && i === 0 || el === $selected.text().trim()) {
           _this._$value.text(el).addClass(cssClass).data('class', cssClass);
 
           if (_this._options.includeValue || _this._options.placeholder) {
