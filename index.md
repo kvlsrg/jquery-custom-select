@@ -2,43 +2,61 @@
 title: Custom Select jQuery Plugin
 ---
 
-## Default
+## Default Features
 
-By default, all the classes of `<option>` elements are copied.
+* Classes of `<option>` elements are copied.
 
-<p markdown="0">
-  <select class="select select--default">
-    <option value="1">First Item</option>
-    <option value="2">Second Item</option>
-    <option class="bold" value="3">Third Item</option>
-    <option value="4">Fourth Item</option>
-    <option class="bold" value="5">Fifth Item</option>
-  </select>
-  <script>
-    $('.select--default').customSelect();
-  </script>
-</p>
+    <p markdown="0">
+      <select class="select select--default">
+        <option value="1">First Item</option>
+        <option value="2">Second Item</option>
+        <option class="bold" value="3">Third Item</option>
+        <option value="4">Fourth Item</option>
+        <option class="bold" value="5">Fifth Item</option>
+      </select>
+    </p>
+    
+    ```js
+    $('select').customSelect();
+    ```
 
-Also, if original `<select>` have explicitly selected `<option>` (with `selected` attribute) custom select shows it as 
+* If original `<select>` have explicitly selected `<option>` (with `selected` attribute) custom select shows it as 
 chosen value.
 
-<p markdown="0">
-  <select class="select select--default">
-    <option value="1">First Item</option>
-    <option value="2">Second Item</option>
-    <option value="3" selected>Third Item</option>
-    <option value="4">Fourth Item</option>
-    <option value="5">Fifth Item</option>
-  </select>
-  <script>
-    $('.select--default').customSelect();
-  </script>
-</p>
+    <p markdown="0">
+      <select class="select select--default">
+        <option value="1">First Item</option>
+        <option value="2">Second Item</option>
+        <option value="3" selected>Third Item</option>
+        <option value="4">Fourth Item</option>
+        <option value="5">Fifth Item</option>
+      </select>
+    </p>
+    
+    ```js
+    $('select').customSelect();
+    ```
+    
+* Attribute `disabled` of original `<option>` is copied to custom select option.
 
-```js
-$('select').customSelect();
-```
+    <p markdown="0">
+      <select class="select select--default">
+        <option value="1">First Item</option>
+        <option value="2">Second Item</option>
+        <option value="3" disabled>Third Item</option>
+        <option value="4">Fourth Item</option>
+        <option value="5">Fifth Item</option>
+      </select>
+      
+      <script>
+        $('.select--default').customSelect();
+      </script>
+    </p>
 
+    ```js
+    $('select').customSelect();
+    ```
+    
 ## Options
 
 * **`block`**  (type: _string_, default: `'custom-select'`) Custom select BEM block name.
@@ -273,3 +291,50 @@ no explicitly selected options).
     console.log($(this).val());
   });
 </script>
+
+## Methods
+
+* **`reset`** Reinits custom select instance.
+
+    <p markdown="0" class="reset">
+      <select class="select select--reset">
+        <option value="1">First Item</option>
+        <option value="2">Second Item</option>
+        <option value="3">Third Item</option>
+        <option value="4">Fourth Item</option>
+        <option value="5">Fifth Item</option>
+      </select>
+      <button class="reset__button">Change to numbers</button>
+      
+      <script>
+        (function () {
+          var $select = $('.select--reset');
+          
+          $select.customSelect({
+            modifier: 'custom-select--reset'
+          });
+          
+          $('.reset__button').on('click', function () {
+            var options = '';
+            for (var i = 1; i <= 5; i++) {
+              options += '<option>' + i + '</option>';
+            }
+            $select.html(options);
+            
+            $select.customSelect('reset');
+          });
+        })();
+      </script>
+    </p>
+    
+    ```js
+    var $select = $('select');
+
+    $select.customSelect();
+
+    $('button').on('click', function () {  
+      updateSelect(); // Update original select 
+      
+      $select.customSelect('reset');
+    });
+    ```

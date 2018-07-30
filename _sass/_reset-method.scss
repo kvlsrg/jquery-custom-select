@@ -1,0 +1,11 @@
+.reset {
+  display: flex;
+
+  &__button {
+    margin-left: 0.75rem;
+  }
+}
+
+.custom-select--reset {
+  flex-grow: 1;
+}
