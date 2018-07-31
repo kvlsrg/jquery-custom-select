@@ -24,7 +24,7 @@ const CustomSelect = (($) => {
      * Custom Select
      *
      * @param {Element} select Original `<select>` DOM element to customize.
-     * @param {Object=} options Settings plain object to overwrite defaults.
+     * @param {(Object|string)=} options Settings object or method name.
      * @param {string=} options.block Custom select BEM block name.
      * @param {Function=} options.hideCallback Fires after dropdown closes.
      * @param {boolean=} options.includeValue Adds chosen value option to
@@ -105,23 +105,19 @@ const CustomSelect = (($) => {
       this._$values = this._$select.find('option');
       this._values = [];
 
+      let placeholder = this._options.placeholder;
+
       $.each(this._$values, (i, option) => {
         const el = $(option).text().trim();
         this._values.push(el);
       });
 
-      // Set value of select if it was cleared
-      const value = this._$select.val();
-      if (!value || !value.length) {
-        this._$select.val(this._$values.eq(0).val());
-      }
-
-      if (this._options.placeholder) {
+      if (placeholder) {
         // Check explicitly selected option
         if (this._$select.find('[selected]').length) {
-          this._options.placeholder = false;
+          placeholder = false;
         } else {
-          this._$value.html(this._options.placeholder);
+          this._$value.html(placeholder);
           // Set select value to null
           this._$select.prop('selectedIndex', -1);
         }
@@ -132,17 +128,20 @@ const CustomSelect = (($) => {
         const $option = $(
           `<button class="${this._options.block}__option" type="button">${el}</button>`
         );
+        const $selected = this._$select.find(':selected');
 
         if (this._$values.eq(i).attr('disabled')) {
           $option.prop('disabled', true);
         }
 
-        if (el === this._$select.find(':selected').text().trim()) {
-          this._$value
-            .text(el)
-            .addClass(cssClass).data('class', cssClass);
+        if ((!$selected.length && i === 0) || el === $selected.text().trim()) {
+          if (!placeholder) {
+            this._$value
+              .text(el)
+              .addClass(cssClass).data('class', cssClass);
+          }
 
-          if (this._options.includeValue || this._options.placeholder) {
+          if (this._options.includeValue || placeholder) {
             $option.addClass(cssClass);
             $option.toggleClass(this._optionSelectedModifier, this._$values.eq(i).is('[selected]'));
             this._$dropdown.append($option);
