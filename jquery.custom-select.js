@@ -105,17 +105,19 @@ const CustomSelect = (($) => {
       this._$values = this._$select.find('option');
       this._values = [];
 
+      let placeholder = this._options.placeholder;
+
       $.each(this._$values, (i, option) => {
         const el = $(option).text().trim();
         this._values.push(el);
       });
 
-      if (this._options.placeholder) {
+      if (placeholder) {
         // Check explicitly selected option
         if (this._$select.find('[selected]').length) {
-          this._options.placeholder = false;
+          placeholder = false;
         } else {
-          this._$value.html(this._options.placeholder);
+          this._$value.html(placeholder);
           // Set select value to null
           this._$select.prop('selectedIndex', -1);
         }
@@ -133,13 +135,13 @@ const CustomSelect = (($) => {
         }
 
         if ((!$selected.length && i === 0) || el === $selected.text().trim()) {
-          if (!this._options.placeholder) {
+          if (!placeholder) {
             this._$value
               .text(el)
               .addClass(cssClass).data('class', cssClass);
           }
 
-          if (this._options.includeValue || this._options.placeholder) {
+          if (this._options.includeValue || placeholder) {
             $option.addClass(cssClass);
             $option.toggleClass(this._optionSelectedModifier, this._$values.eq(i).is('[selected]'));
             this._$dropdown.append($option);

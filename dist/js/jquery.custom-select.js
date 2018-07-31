@@ -101,18 +101,19 @@ var CustomSelect = function ($) {
 
       this._$values = this._$select.find('option');
       this._values = [];
+      var placeholder = this._options.placeholder;
       $.each(this._$values, function (i, option) {
         var el = $(option).text().trim();
 
         _this._values.push(el);
       });
 
-      if (this._options.placeholder) {
+      if (placeholder) {
         // Check explicitly selected option
         if (this._$select.find('[selected]').length) {
-          this._options.placeholder = false;
+          placeholder = false;
         } else {
-          this._$value.html(this._options.placeholder); // Set select value to null
+          this._$value.html(placeholder); // Set select value to null
 
 
           this._$select.prop('selectedIndex', -1);
@@ -131,11 +132,11 @@ var CustomSelect = function ($) {
         }
 
         if (!$selected.length && i === 0 || el === $selected.text().trim()) {
-          if (!_this._options.placeholder) {
+          if (!placeholder) {
             _this._$value.text(el).addClass(cssClass).data('class', cssClass);
           }
 
-          if (_this._options.includeValue || _this._options.placeholder) {
+          if (_this._options.includeValue || placeholder) {
             $option.addClass(cssClass);
             $option.toggleClass(_this._optionSelectedModifier, _this._$values.eq(i).is('[selected]'));
 
