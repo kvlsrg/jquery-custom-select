@@ -64,6 +64,8 @@ var CustomSelect = function ($) {
     _proto.reset = function reset() {
       this._$dropdown.hide().empty();
 
+      this._$value.off('click');
+
       this._fill();
     };
     /**
