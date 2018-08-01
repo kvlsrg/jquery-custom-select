@@ -138,6 +138,7 @@ const CustomSelect = (($) => {
           if (!placeholder) {
             this._$value
               .text(el)
+              .removeClass(this._$value.data('class')).removeData('class')
               .addClass(cssClass).data('class', cssClass);
           }
 

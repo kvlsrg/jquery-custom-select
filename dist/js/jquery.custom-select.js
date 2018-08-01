@@ -133,7 +133,7 @@ var CustomSelect = function ($) {
 
         if (!$selected.length && i === 0 || el === $selected.text().trim()) {
           if (!placeholder) {
-            _this._$value.text(el).addClass(cssClass).data('class', cssClass);
+            _this._$value.text(el).removeClass(_this._$value.data('class')).removeData('class').addClass(cssClass).data('class', cssClass);
           }
 
           if (_this._options.includeValue || placeholder) {
