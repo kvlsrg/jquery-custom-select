@@ -7,13 +7,12 @@
     "url": "https://github.com/kvlsrg/jquery-custom-select/issues"
   },
   "devDependencies": {
-    "@babel/cli": "^7.0.0-beta.55",
-    "@babel/core": "^7.0.0-beta.55",
-    "@babel/plugin-proposal-object-rest-spread": "^7.0.0-beta.55",
-    "@babel/preset-env": "^7.0.0-beta.55",
+    "@babel/cli": "^7.0.0-rc.1",
+    "@babel/core": "^7.0.0-rc.1",
+    "@babel/preset-env": "^7.0.0-rc.1",
     "babel-plugin-transform-es2015-modules-strip": "^0.1.1",
-    "node-sass": "^4.9.2",
-    "uglify-js": "^3.4.6"
+    "node-sass": "^4.9.3",
+    "uglify-js": "^3.4.7"
   },
   "keywords": [
     "custom-select",
