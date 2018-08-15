@@ -12,7 +12,6 @@
     ]
   ],
   "plugins": [
-    "transform-es2015-modules-strip",
-    "@babel/proposal-object-rest-spread"
+    "transform-es2015-modules-strip"
   ]
 }

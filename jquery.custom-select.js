@@ -64,6 +64,8 @@ const CustomSelect = (($) => {
      */
     reset() {
       this._$dropdown.hide().empty();
+      this._$value.off('click');
+
       this._fill();
     }
 
@@ -138,6 +140,7 @@ const CustomSelect = (($) => {
           if (!placeholder) {
             this._$value
               .text(el)
+              .removeClass(this._$value.data('class')).removeData('class')
               .addClass(cssClass).data('class', cssClass);
           }
 

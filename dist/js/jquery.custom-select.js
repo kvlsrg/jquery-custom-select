@@ -1,6 +1,4 @@
-function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; var ownKeys = Object.keys(source); if (typeof Object.getOwnPropertySymbols === 'function') { ownKeys = ownKeys.concat(Object.getOwnPropertySymbols(source).filter(function (sym) { return Object.getOwnPropertyDescriptor(source, sym).enumerable; })); } ownKeys.forEach(function (key) { _defineProperty(target, key, source[key]); }); } return target; }
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+function _extends() { _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; }; return _extends.apply(this, arguments); }
 
 /*!
  * Custom Select jQuery Plugin
@@ -40,7 +38,7 @@ var CustomSelect = function ($) {
      */
     function CustomSelect(select, options) {
       this._$select = $(select);
-      this._options = _objectSpread({}, defaults, typeof options === 'object' ? options : {}); // Modifiers
+      this._options = _extends({}, defaults, typeof options === 'object' ? options : {}); // Modifiers
 
       this._activeModifier = this._options.block + "--active";
       this._dropupModifier = this._options.block + "--dropup";
@@ -63,6 +61,8 @@ var CustomSelect = function ($) {
 
     _proto.reset = function reset() {
       this._$dropdown.hide().empty();
+
+      this._$value.off('click');
 
       this._fill();
     };
@@ -133,7 +133,7 @@ var CustomSelect = function ($) {
 
         if (!$selected.length && i === 0 || el === $selected.text().trim()) {
           if (!placeholder) {
-            _this._$value.text(el).addClass(cssClass).data('class', cssClass);
+            _this._$value.text(el).removeClass(_this._$value.data('class')).removeData('class').addClass(cssClass).data('class', cssClass);
           }
 
           if (_this._options.includeValue || placeholder) {
