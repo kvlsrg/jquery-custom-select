@@ -205,8 +205,7 @@ const CustomSelect = (($) => {
       });
 
       setTimeout(() => {
-        const outsideClickEvent = 'ontouchstart' in document.documentElement ? 'touchstart' : 'click';
-        $(window).on(outsideClickEvent, this._outside);
+        $(document).on('touchstart click', this._outside);
       }, 0);
 
       this._$value.one('click', (event) => {
@@ -244,14 +243,13 @@ const CustomSelect = (($) => {
           this._options.hideCallback.call(this._$element[0]);
         }
 
-        $(window)
-          .off('touchstart click', this._outside)
-          .off('resize scroll', this._dropup);
         this._$value
           .off('click')
           .one('click', (event) => {
             this._show(event);
           });
+        $(document).off('touchstart click', this._outside);
+        $(window).off('resize scroll', this._dropup);
       });
 
       if (this._options.keyboard) {
