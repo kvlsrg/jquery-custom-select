@@ -158,9 +158,7 @@ var CustomSelect = function ($) {
         _this._show(event);
       });
 
-      if (!this._$options.length) {
-        this._$value.prop('disabled', true);
-      }
+      this._$value.prop('disabled', !this._$options.length);
 
       this._$options.on('click', function (event) {
         _this._select(event);
