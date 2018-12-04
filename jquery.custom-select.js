@@ -168,7 +168,10 @@ const CustomSelect = (($) => {
       if (!this._$options.length) {
         this._$value.prop('disabled', true);
       }
-
+      else {
+        this._$value.prop('disabled', false);
+      }
+      
       this._$options.on('click', (event) => {
         this._select(event);
       });
