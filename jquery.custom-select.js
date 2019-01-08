@@ -336,7 +336,7 @@ const CustomSelect = (($) => {
           // Reset option class
           $option.attr('class', `${this._options.block}__option`);
 
-          $.each(this._$values, function() {
+          $.each(this._$values, function () {
             const $this = $(this);
             if ($this.text().trim() === values[i]) {
               $option.addClass($this.attr('class'));
@@ -417,7 +417,7 @@ const CustomSelect = (($) => {
       this._$element.toggleClass(this._dropupModifier, up);
     }
 
-     /**
+    /**
      * Hides dropdown if target of event (e.g. click
      * on `$window`) is not custom select.
      *
@@ -441,7 +441,7 @@ const CustomSelect = (($) => {
     _keydown(event) {
       const $visible = this._$options.filter(':visible').not('[disabled]');
 
-      switch (event.keyCode) {
+      switch (event.which) {
         // Down
         case 40:
           event.preventDefault();
