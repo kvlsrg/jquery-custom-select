@@ -429,12 +429,12 @@ var CustomSelect = function ($) {
       this._$element.toggleClass(this._dropupModifier, up);
     };
     /**
-    * Hides dropdown if target of event (e.g. click
-    * on `$window`) is not custom select.
-    *
-    * @param {Object} event Outside "click" jQuery event.
-    * @private
-    */
+     * Hides dropdown if target of event (e.g. click
+     * on `$window`) is not custom select.
+     *
+     * @param {Object} event Outside "click" jQuery event.
+     * @private
+     */
 
 
     _proto._outside = function _outside(event) {
@@ -456,7 +456,7 @@ var CustomSelect = function ($) {
     _proto._keydown = function _keydown(event) {
       var $visible = this._$options.filter(':visible').not('[disabled]');
 
-      switch (event.keyCode) {
+      switch (event.which) {
         // Down
         case 40:
           event.preventDefault();
@@ -524,7 +524,6 @@ var CustomSelect = function ($) {
      *
      * @param {(Object|string)=} config Options or method.
      * @returns {Function} jQuery plugin.
-     * @private
      */
 
 

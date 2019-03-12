@@ -161,13 +161,13 @@ const CustomSelect = (($) => {
         this._search();
       }
 
-      this._$value.one('click', (event) => {
+      this._$value.one('click', event => {
         this._show(event);
       });
 
       this._$value.prop('disabled', !this._$options.length);
-      
-      this._$options.on('click', (event) => {
+
+      this._$options.on('click', event => {
         this._select(event);
       });
     }
@@ -206,7 +206,7 @@ const CustomSelect = (($) => {
         $(document).on('touchstart click', this._outside);
       }, 0);
 
-      this._$value.one('click', (event) => {
+      this._$value.one('click', event => {
         event.preventDefault();
 
         this._hide();
@@ -243,7 +243,7 @@ const CustomSelect = (($) => {
 
         this._$value
           .off('click')
-          .one('click', (event) => {
+          .one('click', event => {
             this._show(event);
           });
         $(document).off('touchstart click', this._outside);
@@ -336,7 +336,7 @@ const CustomSelect = (($) => {
           // Reset option class
           $option.attr('class', `${this._options.block}__option`);
 
-          $.each(this._$values, function() {
+          $.each(this._$values, function () {
             const $this = $(this);
             if ($this.text().trim() === values[i]) {
               $option.addClass($this.attr('class'));
@@ -417,7 +417,7 @@ const CustomSelect = (($) => {
       this._$element.toggleClass(this._dropupModifier, up);
     }
 
-     /**
+    /**
      * Hides dropdown if target of event (e.g. click
      * on `$window`) is not custom select.
      *
@@ -441,7 +441,7 @@ const CustomSelect = (($) => {
     _keydown(event) {
       const $visible = this._$options.filter(':visible').not('[disabled]');
 
-      switch (event.keyCode) {
+      switch (event.which) {
         // Down
         case 40:
           event.preventDefault();
@@ -506,7 +506,6 @@ const CustomSelect = (($) => {
      *
      * @param {(Object|string)=} config Options or method.
      * @returns {Function} jQuery plugin.
-     * @private
      */
     static _jQueryPlugin(config) {
       return this.each(function () {
