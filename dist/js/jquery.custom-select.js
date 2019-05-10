@@ -65,14 +65,14 @@ var CustomSelect = function ($) {
       this._$value.off('click');
 
       this._fill();
-    };
+    }
     /**
      * Renders initial state of custom select & sets
      * options click event listeners.
      *
      * @private
      */
-
+    ;
 
     _proto._init = function _init() {
       this._$element = $("<div class=\"" + this._options.block + "\">\n           <button class=\"" + this._options.block + "__option " + this._options.block + "__option--value\" type=\"button\"></button>\n           <div class=\"" + this._options.block + "__dropdown\" style=\"display: none;\"></div>\n         </div>");
@@ -87,14 +87,14 @@ var CustomSelect = function ($) {
       this._$dropdown = this._$element.find("." + this._options.block + "__dropdown");
 
       this._fill();
-    };
+    }
     /**
      * Renders custom select options by original
      * select element options.
      *
      * @private
      */
-
+    ;
 
     _proto._fill = function _fill() {
       var _this = this;
@@ -163,7 +163,7 @@ var CustomSelect = function ($) {
       this._$options.on('click', function (event) {
         _this._select(event);
       });
-    };
+    }
     /**
      * Shows custom select dropdown & sets outside
      * click listener to hide.
@@ -171,7 +171,7 @@ var CustomSelect = function ($) {
      * @param {Object} event Value click jQuery event.
      * @private
      */
-
+    ;
 
     _proto._show = function _show(event) {
       var _this2 = this;
@@ -213,14 +213,14 @@ var CustomSelect = function ($) {
         this._options.index = -1;
         $(window).on('keydown', this._keydown);
       }
-    };
+    }
     /**
      * Hides custom select dropdown & resets events
      * listeners to initial.
      *
      * @private
      */
-
+    ;
 
     _proto._hide = function _hide() {
       var _this3 = this;
@@ -254,14 +254,14 @@ var CustomSelect = function ($) {
 
         $(window).off('keydown', this._keydown);
       }
-    };
+    }
     /**
      * Centers chosen option in scrollable element
      * of dropdown.
      *
      * @private
      */
-
+    ;
 
     _proto._scroll = function _scroll() {
       var _this4 = this;
@@ -283,7 +283,7 @@ var CustomSelect = function ($) {
           return false;
         }
       });
-    };
+    }
     /**
      * Changes value of custom select & `<select>`
      * by chosen option.
@@ -291,15 +291,14 @@ var CustomSelect = function ($) {
      * @param {Object} event Option click jQuery event.
      * @private
      */
-
+    ;
 
     _proto._select = function _select(event) {
       var _this5 = this;
 
       event.preventDefault();
       var choice = $(event.currentTarget).text().trim();
-
-      var values = this._values.concat();
+      var values = [].concat(this._values);
 
       this._$value.text(choice).removeClass(this._$value.data('class'));
 
@@ -367,14 +366,14 @@ var CustomSelect = function ($) {
       if (typeof event.originalEvent !== 'undefined') {
         this._$select.trigger('change');
       }
-    };
+    }
     /**
      * Wraps options by wrap element, adds search
      * input to dropdown.
      *
      * @private
      */
-
+    ;
 
     _proto._search = function _search() {
       var _this6 = this;
@@ -412,14 +411,14 @@ var CustomSelect = function ($) {
           _this6._$options.show();
         }
       });
-    };
+    }
     /**
      * Toggles custom select dropup modifier based
      * on space for dropdown below.
      *
      * @private
      */
-
+    ;
 
     _proto._dropup = function _dropup() {
       var bottom = this._$element[0].getBoundingClientRect().bottom;
@@ -427,7 +426,7 @@ var CustomSelect = function ($) {
       var up = $(window).height() - bottom < this._$dropdown.height();
 
       this._$element.toggleClass(this._dropupModifier, up);
-    };
+    }
     /**
      * Hides dropdown if target of event (e.g. click
      * on `$window`) is not custom select.
@@ -435,7 +434,7 @@ var CustomSelect = function ($) {
      * @param {Object} event Outside "click" jQuery event.
      * @private
      */
-
+    ;
 
     _proto._outside = function _outside(event) {
       var $target = $(event.target);
@@ -443,7 +442,7 @@ var CustomSelect = function ($) {
       if (!$target.parents().is(this._$element) && !$target.is(this._$element)) {
         this._hide();
       }
-    };
+    }
     /**
      * Controls navigation from keyboard by custom
      * select options.
@@ -451,7 +450,7 @@ var CustomSelect = function ($) {
      * @param {Object} event Keydown jQuery event.
      * @private
      */
-
+    ;
 
     _proto._keydown = function _keydown(event) {
       var $visible = this._$options.filter(':visible').not('[disabled]');
@@ -518,14 +517,14 @@ var CustomSelect = function ($) {
         default:
           break;
       }
-    };
+    }
     /**
      * Creates jQuery plugin function.
      *
      * @param {(Object|string)=} config Options or method.
      * @returns {Function} jQuery plugin.
      */
-
+    ;
 
     CustomSelect._jQueryPlugin = function _jQueryPlugin(config) {
       return this.each(function () {
