@@ -340,6 +340,7 @@ const CustomSelect = (($) => {
             const $this = $(this);
             if ($this.text().trim() === values[i]) {
               $option.addClass($this.attr('class'));
+              $option.prop('disabled', $this.prop('disabled'));
             }
           });
         });
