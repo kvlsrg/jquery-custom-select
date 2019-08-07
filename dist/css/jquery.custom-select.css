@@ -1,0 +1,188 @@
+/*
+ * Custom Select jQuery Plugin Base
+ */
+.custom-select {
+  position: relative;
+}
+
+.custom-select__option {
+  overflow: hidden;
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  padding: 0;
+  background-color: transparent;
+  border: 0;
+  border-radius: 0;
+  font-family: inherit;
+  white-space: nowrap;
+  text-align: left;
+  text-overflow: ellipsis;
+  cursor: pointer;
+  user-select: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.custom-select__option-wrap {
+  position: relative;
+}
+
+.custom-select__input {
+  box-sizing: border-box;
+  display: block;
+  width: 100%;
+  padding: 0;
+  border-width: 1px 0;
+  border-style: solid;
+  border-radius: 0;
+  font-family: inherit;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.custom-select__dropdown {
+  position: absolute;
+  box-sizing: border-box;
+  width: 100%;
+  top: 100%;
+  left: 0;
+}
+
+.custom-select--dropup .custom-select__dropdown {
+  top: auto;
+  bottom: 100%;
+}
+
+/*
+ * Custom Select jQuery Plugin Theme
+ */
+.custom-select__option {
+  position: relative;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  color: #212121;
+  line-height: 1.5;
+}
+
+.custom-select__option:focus {
+  outline: none;
+}
+
+.custom-select__option:hover, .custom-select__option:focus {
+  background-color: #f9f9f9;
+}
+
+.custom-select__option--value {
+  padding-right: 1.875rem;
+  background-color: #fff;
+  border: 1px solid #e6e6e6;
+  border-radius: 0.25rem;
+}
+
+.custom-select__option--value::after {
+  position: absolute;
+  box-sizing: border-box;
+  width: 0;
+  height: 0;
+  top: 50%;
+  right: 0.75rem;
+  border-width: 0.3rem;
+  border-bottom-width: 0;
+  border-style: solid;
+  border-color: currentColor transparent;
+  transform: translateY(-50%);
+  content: "";
+}
+
+.custom-select--active .custom-select__option--value::after {
+  transform: translateY(-50%) rotate(-180deg);
+}
+
+.custom-select--active .custom-select__option--value {
+  border-bottom-color: transparent;
+  border-radius: 0.25rem 0.25rem 0 0;
+}
+
+.custom-select--active .custom-select__option--value:hover, .custom-select--active .custom-select__option--value:focus {
+  background-color: #fff;
+}
+
+.custom-select--dropup.custom-select--active .custom-select__option--value {
+  border-top-color: transparent;
+  border-bottom-color: #e6e6e6;
+  border-radius: 0 0 0.25rem 0.25rem;
+}
+
+.custom-select__option--selected {
+  background-color: #fcfcfc;
+}
+
+.custom-select__option[disabled] {
+  color: #a1a1a1;
+  cursor: default;
+}
+
+.custom-select__option[disabled]:hover, .custom-select__option[disabled]:focus {
+  background-color: transparent;
+}
+
+.custom-select__option-wrap {
+  overflow-y: auto;
+  max-height: 11.25rem;
+}
+
+.custom-select__option-wrap::-webkit-scrollbar {
+  width: 16px;
+}
+
+.custom-select__option-wrap::-webkit-scrollbar-thumb {
+  background-color: #e6e6e6;
+  background-clip: padding-box;
+  border-width: 0 4px;
+  border-style: solid;
+  border-color: transparent;
+}
+
+.custom-select__input {
+  position: relative;
+  z-index: 1;
+  height: 2.25rem;
+  margin-top: -1px;
+  padding: 0 0.75rem;
+  border-color: #e6e6e6;
+  transform: translateY(1px);
+  font-size: 1rem;
+  color: #212121;
+}
+
+.custom-select__input:focus {
+  outline: none;
+}
+
+.custom-select--dropup .custom-select__input {
+  border-top-width: 0;
+  margin-top: 0;
+  transform: translateY(0);
+}
+
+.custom-select__dropdown {
+  overflow: hidden;
+  z-index: 1;
+  top: calc(100% - 1px);
+  background-color: #fff;
+  border-width: 0 1px 1px;
+  border-style: solid;
+  border-color: #e6e6e6;
+  border-radius: 0 0 0.25rem 0.25rem;
+}
+
+.custom-select--dropup .custom-select__dropdown {
+  bottom: calc(100% - 1px);
+  border-width: 1px 1px 0;
+  border-radius: 0.25rem 0.25rem 0 0;
+}
+
+/*# sourceMappingURL=jquery.custom-select.css.map */
