@@ -20,6 +20,7 @@
     "sass/",
     "jquery.custom-select.js"
   ],
+  "homepage": "https://kvlsrg.github.io/jquery-custom-select",
   "keywords": [
     "custom-select",
     "jquery-plugin"
