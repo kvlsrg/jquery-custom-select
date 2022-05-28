@@ -12,7 +12,7 @@
     "@babel/preset-env": "^7.10.4",
     "babel-plugin-transform-es2015-modules-strip": "^0.1.1",
     "jquery": "^3.5.1",
-    "node-sass": "^4.14.1",
+    "node-sass": "^7.0.0",
     "uglify-js": "^3.10.0"
   },
   "files": [
